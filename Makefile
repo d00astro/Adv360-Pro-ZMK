@@ -14,6 +14,7 @@ firmware/%-left.uf2 firmware/%-right.uf2: config/adv360.keymap
 	$(DOCKER) run --rm -it --name zmk \
 		-v $(PWD)/firmware:/app/firmware \
 		-v $(PWD)/config:/app/config:ro \
+		-v $(PWD)/zmk-nodefree-config:/app/zmk-nodefree-config:ro \
 		-e TIMESTAMP=$(TIMESTAMP) \
 		zmk
 
