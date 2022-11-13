@@ -1,5 +1,7 @@
 # ADV360-PRO-ZMK
 
+https://github.com/urob/zmk-nodefree-config
+
 ## To build Firmware in GitHub Actions
 
 ### Setup

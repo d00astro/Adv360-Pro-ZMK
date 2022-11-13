@@ -4,14 +4,18 @@
 #include <dt-bindings/zmk/rgb.h>
 #include <dt-bindings/zmk/backlight.h>
 
+#define HOST_OS 1  // set to 1 for Linux, default is 0 (Windows)
 
 #include "../zmk-nodefree-config/helper.h"
 #include "../zmk-nodefree-config/international_chars/swedish.dtsi"
 
-// #define UNICODE_LEAD  &kp RALT &kp U  // OS specific sequence to initialize unicode
-// #define UNICODE_TRAIL &kp SPACE         // OS specific sequence to terminate unicode
 
-#define HOST_OS 1  // set to 1 for Linux, default is 0 (Windows)
+// Hold : > 500 ms
+// Tap and hold within 400 ms -> repeat tap
+&mt {
+    tapping-term-ms = <500>;
+    quick-tap-ms = <400>;
+};
 
 / {
     behaviors {
@@ -28,151 +32,61 @@
       };
 
       /*
-      se_aa: se_aa {
+      se_aa: sv_ao {
         compatible = "zmk,behavior-mod-morph";
         label = "AA";
         #binding-cells = <0>;
-        bindings = <&se_aa_lowercase>, <&se_aa_uppercase>;
-        mods = <(MOD_LSFT|MOD_RSFT)>;
-        // masked_mods = <(MOD_LSF|MOD_RSFT)>;
-      };
-      se_ae: se_ae {
-        compatible = "zmk,behavior-mod-morph";
-        label = "AA";
-        #binding-cells = <0>;
-        bindings = <&se_ae_lowercase>, <&se_ae_uppercase>;
-        mods = <(MOD_LSFT|MOD_RSFT)>;
-        // masked_mods = <(MOD_LSF|MOD_RSFT)>;
-      };
-      se_oe: se_oe {
-        compatible = "zmk,behavior-mod-morph";
-        label = "AA";
-        #binding-cells = <0>;
-        bindings = <&se_oe_lowercase>, <&se_oe_uppercase>;
+        bindings = <&sv_ao_lowercase>, <&sv_ao_uppercase>;
         mods = <(MOD_LSFT|MOD_RSFT)>;
         // masked_mods = <(MOD_LSF|MOD_RSFT)>;
       };
       */
     };
     macros {
-      /*
-      // Swedish `å` : U+E5  / Alt+"134"
-      se_aa_lowercase: se_aa_lowercase {
-        label = "ZM_aalo";
+      // KVM 1
+      kvm1: kvm1 {
+        label = "KVM1";
         compatible = "zmk,behavior-macro";
         #binding-cells = <0>;
         wait-ms = <40>;
         tap-ms = <40>;
-        // Linux:
-        // bindings = <&kp LC(LS(U))>, <&kp N0>, <&kp N0>, <&kp E>, <&kp N5>, <&kp RET>;
-        bindings = <UNICODE_LEAD &kp 0 &kp 0 &kp E &kp N5 UNICODE_TRAIL>;
-        // Windows only:
-        /* bindings
-            = <&macro_press   &kp LALT>
-            , <&macro_tap     &kp KP_N1 &kp KP_N3 &kp KP_N4>
-            , <&macro_release &kp LALT>
-            ;
-        * /
+        bindings = <&kp SCROLLLOCK>, <&kp SCROLLLOCK>, <&kp N1>;
       };
-      // Swedish `Å` : U+C5  / Alt+"0197"
-      se_aa_uppercase: se_aa_uppercase {
-        label = "ZM_aahi";
+      // KVM 2
+      kvm2: kvm2 {
+        label = "KVM2";
         compatible = "zmk,behavior-macro";
         #binding-cells = <0>;
         wait-ms = <40>;
         tap-ms = <40>;
-        // Linux:
-        // bindings = <&kp LC(LS(U))>, <&kp N0>, <&kp N0>, <&kp C>, <&kp N5>, <&kp RET>;
-        bindings = <UNICODE_LEAD &kp 0 &kp 0 &kp C &kp 5 UNICODE_TRAIL>;
-        // Windows only:
-        /* bindings
-            = <&macro_press   &kp LALT>
-            , <&macro_tap     &kp KP_N0 &kp KP_N1 &kp KP_N9 &kp KP_N7>
-            , <&macro_release &kp LALT>
-            ;
-        * /
+        bindings = <&kp SCROLLLOCK>, <&kp SCROLLLOCK>, <&kp N2>;
       };
-      // Swedish `ä` : U+E4  / Alt+"132"
-      se_ae_lowercase: se_ae_lowercase {
-        label = "ZM_aalo";
+      // KVM 3
+      kvm3: kvm3 {
+        label = "KVM3";
         compatible = "zmk,behavior-macro";
         #binding-cells = <0>;
         wait-ms = <40>;
         tap-ms = <40>;
-        // Linux:
-        // bindings = <&kp LC(LS(U))>, <&kp N0>, <&kp N0>, <&kp E>, <&kp N4>, <&kp RET>;
-        bindings = <UNICODE_LEAD &kp 0 &kp 0 &kp E &kp 4 UNICODE_TRAIL>;
-        // Windows only:
-        /* bindings
-            = <&macro_press   &kp LALT>
-            , <&macro_tap     &kp KP_N1 &kp KP_N3 &kp KP_N2>
-            , <&macro_release &kp LALT>
-            ;
-        * /
+        bindings = <&kp SCROLLLOCK>, <&kp SCROLLLOCK>, <&kp N3>;
       };
-      // Swedish `Ä` : U+C4  / Alt+"0196"
-      se_ae_uppercase: se_ae_uppercase {
-        label = "ZM_aahi";
+      // KVM 4
+      kvm4: kvm4 {
+        label = "KVM4";
         compatible = "zmk,behavior-macro";
         #binding-cells = <0>;
         wait-ms = <40>;
         tap-ms = <40>;
-        // Linux:
-        // bindings =  <&kp LC(LS(U))>, <&kp N0>, <&kp N0>, <&kp C>, <&kp N4>, <&kp RET>;
-        bindings = <UNICODE_LEAD &kp 0 &kp 0 &kp C &kp 4 UNICODE_TRAIL>;
-        // Windows only:
-        /* bindings
-            = <&macro_press   &kp LALT>
-            , <&macro_tap     &kp KP_N0 &kp KP_N1 &kp KP_N9 &kp KP_N6>
-            , <&macro_release &kp LALT>
-            ;
-        * /
+        bindings = <&kp SCROLLLOCK>, <&kp SCROLLLOCK>, <&kp N4>;
       };
-      // Swedish `ö` : U+F5  / Alt+"0148"
-      se_oe_lowercase: se_oe_lowercase {
-        label = "ZM_aalo";
-        compatible = "zmk,behavior-macro";
-        #binding-cells = <0>;
-        wait-ms = <40>;
-        tap-ms = <40>;
-        // Linux:
-        // bindings = <&kp LC(LS(U))>, <&kp N0>, <&kp N0>, <&kp F>, <&kp N6>, <&kp RET>;
-        bindings = <UNICODE_LEAD &kp 0 &kp 0 &kp F &kp 6 UNICODE_TRAIL>;
-        // Windows only:
-        /* bindings
-            = <&macro_press   &kp LALT>
-            , <&macro_tap     &kp KP_N1 &kp KP_N4 &kp KP_N8>
-            , <&macro_release &kp LALT>
-            ;
-        * /
-      };
-      // Swedish `Ö` : U+D6  / Alt+"0214"
-      se_oe_uppercase: se_oe_uppercase {
-        label = "ZM_aahi";
-        compatible = "zmk,behavior-macro";
-        #binding-cells = <0>;
-        wait-ms = <40>;
-        tap-ms = <40>;
-        // Linux:
-        // bindings = <&kp LC(LS(U))>, <&kp N0>, <&kp N0>, <&kp D>, <&kp N6>, <&kp RET>;
-        bindings = <UNICODE_LEAD &kp 0 &kp 0 &kp D &kp 6 UNICODE_TRAIL>;
-        // Windows only:
-        /* bindings
-            = <&macro_press   &kp LALT>
-            , <&macro_tap     &kp KP_N0 &kp KP_N2 &kp KP_N1 &kp KP_N4>
-            , <&macro_release &kp LALT>
-            ;
-        * /
-      };
-      */
     };
 
   keymap {
     compatible = "zmk,keymap";
     main {
       bindings = <
-        &kp ESC   &kp &none &kp N1    &kp N2    &kp N3    &kp DEL   &kp DEL                                                                 &tog 2    &kp ESC   &kp N8    &kp N9    &kp N0    &none     &kp K_APP 
-        &kp LALT  &kp W     &kp D     &kp R     &kp N4    &kp N5    &none                                                                   &none     &kp N6    &kp N7    &kp U     &kp M     &kp P     &kp BSPC
+        &kp ESC   &kp &none &mt F1 N1 &mt F2 N2 &mt F3 N3 &kp DEL   &kp DEL                                                                 &tog 2    &kp ESC   &mt F8 N8 &mt F9 N9 &mt F10 N0 &kp F11  &mt F12 K_APP 
+        &kp LALT  &kp W     &kp D     &kp R     &mt F4 N4 &mt F5 N5 &none                                                                   &none     &mt F6 N6 &mt F7 N7 &kp U     &kp M     &kp P     &kp BSPC
         &kp LSHFT &kp A     &kp S     &kp H     &kp T     &kp TAB   &none         &kp LALT  &kp CAPS              &tog 2    &kp RCTRL       &none     &kp ENTER &kp N     &kp E     &kp O     &kp I     &kp SQT
         &kp LGUI  &kp K     &kp Y     &kp F     &kp C     &none         &none     &none     &kp LSHFT &none &none &none     &none     &none           &none     &kp COMMA &kp DOT   &kp L     &kp G     &kp RSHFT
         &none     &kp Q     &kp Z     &kp X     &kp V                   &mo 1     &kp LCTRL &kp SPACE             &kp RGUI  &kp LSHFT &kp SPACE                 &kp LBKT  &kp RBKT  &kp B     &kp J     &none
@@ -180,15 +94,25 @@
     };
     layer_1 {
       bindings = <
-        &trans    &trans    &kp N0    &kp N9    &kp N8    &kp BSPC  &trans                                                                  &trans    &trans    &trans      &trans        &trans        &trans          &trans
+        &trans    &trans    &kp N0    &kp N9    &kp N8    &kp BSPC  &kp BSPC                                                                &trans    &trans    &kvm1       &kvm2         &kvm3         &kvm4           &trans
         &trans    &sv_ao    &trans    &kp UP    &kp N7    &kp N6    &trans                                                                  &trans    &trans    &kp SEMI    &kp PG_UP     &kp MINUS     &kp EQUAL       &kp DEL
-        &trans    &trans    &kp LEFT  &kp DOWN  &kp RIGHT &kp ENTER &trans        &trans    &trans                &kp LGUI  &kp RCTRL       &trans    &trans    &kp HOME    &kp PG_DN     &kp END       &kp GRAVE       &trans
-        &trans    &trans    &trans    &kp DOT   &kp COMMA &trans        &none     &none     &trans    &none &none &kp PG_UP &none     &none           &trans    &kp SLASH   &kp BSLH      &sv_oe        &sv_ae          &trans
-        &trans    &trans    &kp PSCRN &kp RBKT  &kp LBKT                &trans    &trans    &trans                &kp PG_DN &kp ENTER &kp KP_N0                 &trans      &trans        &trans        &trans          &trans
+        &trans    &trans    &kp LEFT  &kp DOWN  &kp RIGHT &kp ENTER &trans        &trans    &trans                &trans    &trans          &trans    &trans    &kp HOME    &kp PG_DN     &kp END       &kp GRAVE       &trans
+        &trans    &trans    &trans    &kp DOT   &kp COMMA &trans        &none     &none     &trans    &none &none &trans    &trans    &none           &trans    &kp SLASH   &kp BSLH      &sv_oe        &sv_ae          &trans
+        &trans    &trans    &kp PSCRN &kp RBKT  &kp LBKT                &trans    &trans    &trans                &trans    &trans    &trans                    &trans      &trans        &trans        &trans          &trans
       >;
     };
-  
+
     game {
+      bindings = <
+        &kp ESC   &kp N1    &kp N2    &kp N3    &kp N4    &none     &kp LGUI                                                                &trans    &trans    &trans      &trans        &trans        &trans          &trans
+        &kp ENTER &kp TAB   &kp Q     &kp W     &kp E     &kp R     &kp T                                                                   &trans    &trans    &trans      &trans        &trans        &trans          &trans
+        &kp F5    &kp LSHFT &kp A     &kp S     &kp D     &kp F     &kp Y         &kp I     &kp J                 &trans    &trans          &trans    &trans    &trans      &trans        &trans        &trans          &trans
+        &kp F9    &kp LCTRL &kp Z     &kp X     &kp C     &kp V         &none     &none     &kp N     &none &none &trans    &none     &none           &trans    &trans      &trans        &trans        &trans          &trans
+        &kp 9     &kp 8     &kp 7     &kp 6     &kp 5                   &kp SPACE &kp LALT  &kp M                 &trans    &trans    &trans                    &trans      &trans        &trans        &trans          &trans
+      >;
+    };
+
+    blank {    
       bindings = <
         &trans    &trans    &trans    &trans    &trans    &trans    &trans                                                                  &trans    &trans    &trans      &trans        &trans        &trans          &trans
         &trans    &trans    &trans    &trans    &trans    &trans    &none                                                                   &trans    &trans    &trans      &trans        &trans        &trans          &trans
