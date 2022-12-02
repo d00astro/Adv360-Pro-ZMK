@@ -21,26 +21,16 @@
     behaviors {
       #include "macros.dtsi"
 
-      hm: homerow_mods {
+      th: tap_hold { // like hold-tap, but prio for tap
           compatible = "zmk,behavior-hold-tap";
-          label = "HOMEROW_MODS";
+          label = "TAP_HOLD"; 
           #binding-cells = <2>;
-          tapping-term-ms = <200>;
-          quick_tap_ms = <175>;
+          tapping-term-ms = <500>;
+          quick_tap_ms = <250>;
           flavor = "tap-preferred";
           bindings = <&kp>, <&kp>;
       };
 
-      /*
-      se_aa: sv_ao {
-        compatible = "zmk,behavior-mod-morph";
-        label = "AA";
-        #binding-cells = <0>;
-        bindings = <&sv_ao_lowercase>, <&sv_ao_uppercase>;
-        mods = <(MOD_LSFT|MOD_RSFT)>;
-        // masked_mods = <(MOD_LSF|MOD_RSFT)>;
-      };
-      */
     };
     macros {
       // KVM 1
@@ -85,8 +75,8 @@
     compatible = "zmk,keymap";
     main {
       bindings = <
-        &kp ESC   &kp &none &mt F1 N1 &mt F2 N2 &mt F3 N3 &kp DEL   &kp DEL                                                                 &tog 2    &kp ESC   &mt F8 N8 &mt F9 N9 &mt F10 N0 &kp F11  &mt F12 K_APP 
-        &kp LALT  &kp W     &kp D     &kp R     &mt F4 N4 &mt F5 N5 &none                                                                   &none     &mt F6 N6 &mt F7 N7 &kp U     &kp M     &kp P     &kp BSPC
+        &kp ESC   &kp &none &th F1 N1 &th F2 N2 &th F3 N3 &kp DEL   &kp DEL                                                                 &tog 2    &kp ESC   &th F8 N8 &th F9 N9 &th F10 N0 &kp F11  &th F12 K_APP 
+        &kp LALT  &kp W     &kp D     &kp R     &th F4 N4 &th F5 N5 &none                                                                   &none     &th F6 N6 &th F7 N7 &kp U     &kp M     &kp P     &kp BSPC
         &kp LSHFT &kp A     &kp S     &kp H     &kp T     &kp TAB   &none         &kp LALT  &kp CAPS              &tog 2    &kp RCTRL       &none     &kp ENTER &kp N     &kp E     &kp O     &kp I     &kp SQT
         &kp LGUI  &kp K     &kp Y     &kp F     &kp C     &none         &none     &none     &kp LSHFT &none &none &none     &none     &none           &none     &kp COMMA &kp DOT   &kp L     &kp G     &kp RSHFT
         &none     &kp Q     &kp Z     &kp X     &kp V                   &mo 1     &kp LCTRL &kp SPACE             &kp RGUI  &kp LSHFT &kp SPACE                 &kp LBKT  &kp RBKT  &kp B     &kp J     &none
@@ -108,7 +98,7 @@
         &kp ENTER &kp TAB   &kp Q     &kp W     &kp E     &kp R     &kp T                                                                   &trans    &trans    &trans      &trans        &trans        &trans          &trans
         &kp F5    &kp LSHFT &kp A     &kp S     &kp D     &kp F     &kp Y         &kp I     &kp J                 &trans    &trans          &trans    &trans    &trans      &trans        &trans        &trans          &trans
         &kp F9    &kp LCTRL &kp Z     &kp X     &kp C     &kp V         &none     &none     &kp N     &none &none &trans    &none     &none           &trans    &trans      &trans        &trans        &trans          &trans
-        &kp 9     &kp 8     &kp 7     &kp 6     &kp 5                   &kp SPACE &kp LALT  &kp M                 &trans    &trans    &trans                    &trans      &trans        &trans        &trans          &trans
+        &kp N9    &kp N8    &kp N7    &kp N6    &kp N5                  &kp SPACE &kp LALT  &kp M                 &trans    &trans    &trans                    &trans      &trans        &trans        &trans          &trans
       >;
     };
 
