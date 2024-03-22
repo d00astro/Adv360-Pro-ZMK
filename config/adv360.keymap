@@ -37,11 +37,11 @@
 
         default_layer {
             bindings = <
-        &none           &none       &kp SLASH           &kp MINUS         &kp EQUAL        &kp ESC             &kp ESCAPE                                                                    &kp ESCAPE           &kp ESC  &kp RIGHT_PARENTHESIS  &kp LEFT_PARENTHESIS           &kp N0       &none   &none
-    &kp GRAVE           &kp B      &mt RALT Y               &kp O             &kp U  &kp SEMICOLON                  &none                                                                         &none  &kp SINGLE_QUOTE                  &kp L                 &kp D  &mt RIGHT_ALT W       &kp V   &kp Z
- &kp CAPSLOCK  &mt LEFT_GUI C  &mt LEFT_ALT I  &mt LEFT_CONTROL E  &mt LEFT_SHIFT A     &kp PERIOD                  &none      &none   &none                   &none                 &none        &none         &kp COMMA       &mt LEFT_SHIFT H    &mt LEFT_CONTROL T   &mt LEFT_ALT S  &mt LGUI N   &kp Q
-        &none           &kp G           &kp X               &kp J             &kp K          &sl 7                                     &none                   &none                                                &sl 7                  &kp R                 &kp M            &kp F       &kp P   &none
-        &none           &none           &none               &none             &none                           &lt 1 ENTER  &lt 2 TAB   &none                   &none  &mt LSHIFT BACKSPACE  &lt 3 SPACE                                    &none                 &none            &none       &none   &none
+     &none           &none       &kp SLASH           &kp MINUS         &kp EQUAL         &kp ESC             &kp ESCAPE                                                                    &kp ESCAPE           &kp ESC  &kp RIGHT_PARENTHESIS  &kp LEFT_PARENTHESIS           &kp N0       &none   &none
+ &kp GRAVE           &kp B      &mt RALT Y               &kp O             &kp U   &kp SEMICOLON                  &none                                                                         &none  &kp SINGLE_QUOTE                  &kp L                 &kp D  &mt RIGHT_ALT W       &kp V   &kp Z
+    &cappy  &mt LEFT_GUI C  &mt LEFT_ALT I  &mt LEFT_CONTROL E  &mt LEFT_SHIFT A  &custom_period                  &none      &none   &none                   &none                 &none        &none     &custom_comma   &shift_right LSHFT H    &mt LEFT_CONTROL T   &mt LEFT_ALT S  &mt LGUI N   &kp Q
+     &none           &kp G           &kp X               &kp J             &kp K           &sl 7                                     &none                   &none                                                &sl 7                  &kp R                 &kp M            &kp F       &kp P   &none
+     &none           &none           &none               &none             &none                            &lt 1 ENTER  &lt 2 TAB   &none                   &none  &mt LSHIFT BACKSPACE  &lt 3 SPACE                                    &none                 &none            &none       &none   &none
             >;
         };
 
