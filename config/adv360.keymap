@@ -125,7 +125,8 @@
         };
 
     };
-};
 
 #include "hacks_emoji.dtsi"
-#include "hacks_mouse.dtsi"
+#include "hacks_mous.dtsi"
+
+};
