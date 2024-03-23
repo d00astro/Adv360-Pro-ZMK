@@ -12,18 +12,18 @@ behaviors {
     #include "macros_world.dtsi"
     #include "macros_emoji.dtsi"
 
-    // Remove 
-    #include "macros.dtsi"
-    #include "version.dtsi"
-    hm: homerow_mods {
-        compatible = "zmk,behavior-hold-tap";
-        label = "HOMEROW_MODS";
-        #binding-cells = <2>;
-        tapping-term-ms = <200>;
-        quick_tap_ms = <175>;
-        flavor = "tap-preferred";
-        bindings = <&kp>, <&kp>;
-    };
+    // // Remove 
+    // #include "macros.dtsi"
+    // #include "version.dtsi"
+    // hm: homerow_mods {
+    //     compatible = "zmk,behavior-hold-tap";
+    //     label = "HOMEROW_MODS";
+    //     #binding-cells = <2>;
+    //     tapping-term-ms = <200>;
+    //     quick_tap_ms = <175>;
+    //     flavor = "tap-preferred";
+    //     bindings = <&kp>, <&kp>;
+    // };
 };
 
 #define LYR_DEF 0
@@ -35,13 +35,14 @@ behaviors {
 #define LYR_UNI 5
 #define LYR_GAM 6
 #define LYR_LOW 7
+#define LYR_NON 8
 
 keymap {
     compatible = "zmk,keymap";
 //  Left 1              Left 2              Left 3              Left 4              Left 5              Left 6              Left 7              Left 8              Left 9              Right -9            Right -8            Right -7            Right -6            Right -5            Right -4            Right -3            Right -2            Right -1
         default_layer {
             bindings = <
-    &none               &none               &custom_slash       &kp MINUS           &custom_equal       &kp ESC             &kp ESC                                                                                             &kp ESCAPE          &kp ESC             &custom_right_paren &custom_left_paren  &custom_zero        &none               &none
+    &none               &none               &custom_slash       &kp MINUS           &custom_equal       &kp ESC             &kp ESC                                                                                             &kp ESC             &kp ESC             &custom_right_paren &custom_left_paren  &custom_zero        &none               &none
     &kp GRAVE           &kp B               &homey_left RALT Y  &kp O               &kp U               &kp SEMICOLON       &none                                                                                               &none               &kp SINGLE_QUOTE    &kp L               &kp D               &homey_right RALT W &kp V               &kp Z
     &cappy              &homey_left LGUI C  &homey_left LALT I  &homey_left LCTRL E &shift_left LSHFT A &custom_period      &none               &none               &none               &none               &none               &none               &custom_comma     &shift_right LSHFT H &homey_right LCTRL T &homey_right LALT S &homey_right LGUI N &kp Q
     &none               &kp G               &kp X               &kp J               &kp K               &sl LYR_LOW                                                 &none               &none                                                       &sl LYR_LOW         &kp R               &kp M               &kp F               &kp P               &none
@@ -119,6 +120,15 @@ keymap {
             >;
         };
 
+        layer_none {
+            bindings = <
+    &none               &none               &none               &none               &none               &none               &to LYR_ABC                                                                                         &to LYR_ABC         &none               &none               &none               &none               &none               &none
+    &none               &none               &none               &none               &none               &none               &none                                                                                               &none               &none               &none               &none               &none               &none               &none
+    &none               &none               &none               &none               &none               &none               &none               &none               &none              &none                &none               &none               &none               &none               &none               &none               &none               &none
+    &none               &none               &none               &none               &none               &sl LYR_LOW                                                 &none              &none                                                        &sl LYR_LOW         &none               &none               &none               &none               &none
+    &none               &none               &none               &none               &none                                   &none               &none               &none              &none                &none               &none                                   &none               &none               &none               &none               &none
+            >;
+        };
     };
 
     #include "hacks_emoji.dtsi"
