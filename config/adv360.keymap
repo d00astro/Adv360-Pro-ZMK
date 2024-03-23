@@ -17,6 +17,15 @@
 
 / {
   behaviors {
+
+    #include "behaviors_definitions.dtsi"
+    #include "behaviors_key_positions.dtsi"
+    #include "behaviors_engrammer.dtsi"
+    #include "macros_words.dtsi"
+    #include "macros_world.dtsi"
+    #include "macros_emoji.dtsi"
+
+
     #include "macros.dtsi"
     #include "version.dtsi"
 
@@ -117,3 +126,6 @@
 
     };
 };
+
+#include "hacks_emoji.dtsi"
+#include "hacks_mouse.dtsi"
