@@ -1,0 +1,1283 @@
+
+    //////////////////////////////////////////////////////////////////////////
+    //
+    // World layer - international characters
+    //
+    //////////////////////////////////////////////////////////////////////////
+
+    //
+    // UNICODE_TARGET_OS defines which operating system you're targeting
+    // for use with the UNICODE() macro.  This is needed because each OS
+    // has different shortcuts for typing Unicode characters as hexcodes.
+    //
+    // NOTE: You may need to enable Unicode hexadecimal input in your OS:
+    // - https://ladedu.com/how-to-enter-unicode-characters-on-a-mac/
+    // - https://unicode-explorer.com/articles/how-to-type-unicode-characters-in-linux
+    // - https://unicode-explorer.com/articles/how-to-type-unicode-characters-in-windows
+    //
+    #ifndef UNICODE_TARGET_OS
+    #define UNICODE_TARGET_OS 1 // linux
+    //#define UNICODE_TARGET_OS 2 // macos
+    //#define UNICODE_TARGET_OS 3 // windows
+    #endif
+
+    //
+    // UNICODE_TAP_DELAY defines how long the macro waits (milliseconds)
+    // between keystrokes while inputting the Unicode codepoint shortcut.
+    //
+    #ifndef UNICODE_TAP_DELAY
+    #define UNICODE_TAP_DELAY 1
+    #endif
+
+    //
+    // UNICODE_SEQ_DELAY defines how long the macro waits (milliseconds)
+    // between emitting Unicode codepoints in multi-codepoint characters.
+    //
+    #ifndef UNICODE_SEQ_DELAY
+    #define UNICODE_SEQ_DELAY 10
+    #endif
+
+    #define UNICODE(name, ...) \
+        ZMK_MACRO(name, \
+            wait-ms = <UNICODE_TAP_DELAY>; \
+            tap-ms = <UNICODE_TAP_DELAY>; \
+            bindings = __VA_ARGS__; \
+        )
+
+    //
+    // NOTE: edit the emoji.yaml file and run `rake` to generate this:
+    //
+
+    //
+    // codepoints
+    //
+
+      /* ° */ UNICODE(world_degree_sign,
+        #if UNICODE_TARGET_OS == 1
+          <&kp LC(LS(U)) &kp B &kp N0 &kp ENTER>
+        #elif UNICODE_TARGET_OS == 2
+          <&macro_press &kp LALT>, <&macro_tap &kp N0 &kp N0 &kp B &kp N0>, <&macro_release &kp LALT>
+        #elif UNICODE_TARGET_OS == 3
+          <&macro_press &kp LALT>, <&macro_tap &kp KP_PLUS &kp B &kp KP_N0>, <&macro_release &kp LALT>
+        #endif
+      )
+
+      /* § */ UNICODE(world_section_sign,
+        #if UNICODE_TARGET_OS == 1
+          <&kp LC(LS(U)) &kp A &kp N7 &kp ENTER>
+        #elif UNICODE_TARGET_OS == 2
+          <&macro_press &kp LALT>, <&macro_tap &kp N0 &kp N0 &kp A &kp N7>, <&macro_release &kp LALT>
+        #elif UNICODE_TARGET_OS == 3
+          <&macro_press &kp LALT>, <&macro_tap &kp KP_PLUS &kp A &kp KP_N7>, <&macro_release &kp LALT>
+        #endif
+      )
+
+      /* ¶ */ UNICODE(world_paragraph_sign,
+        #if UNICODE_TARGET_OS == 1
+          <&kp LC(LS(U)) &kp B &kp N6 &kp ENTER>
+        #elif UNICODE_TARGET_OS == 2
+          <&macro_press &kp LALT>, <&macro_tap &kp N0 &kp N0 &kp B &kp N6>, <&macro_release &kp LALT>
+        #elif UNICODE_TARGET_OS == 3
+          <&macro_press &kp LALT>, <&macro_tap &kp KP_PLUS &kp B &kp KP_N6>, <&macro_release &kp LALT>
+        #endif
+      )
+
+      /* º */ UNICODE(world_o_ordinal,
+        #if UNICODE_TARGET_OS == 1
+          <&kp LC(LS(U)) &kp B &kp A &kp ENTER>
+        #elif UNICODE_TARGET_OS == 2
+          <&macro_press &kp LALT>, <&macro_tap &kp N0 &kp N0 &kp B &kp A>, <&macro_release &kp LALT>
+        #elif UNICODE_TARGET_OS == 3
+          <&macro_press &kp LALT>, <&macro_tap &kp KP_PLUS &kp B &kp A>, <&macro_release &kp LALT>
+        #endif
+      )
+
+      /* ª */ UNICODE(world_a_ordinal,
+        #if UNICODE_TARGET_OS == 1
+          <&kp LC(LS(U)) &kp A &kp A &kp ENTER>
+        #elif UNICODE_TARGET_OS == 2
+          <&macro_press &kp LALT>, <&macro_tap &kp N0 &kp N0 &kp A &kp A>, <&macro_release &kp LALT>
+        #elif UNICODE_TARGET_OS == 3
+          <&macro_press &kp LALT>, <&macro_tap &kp KP_PLUS &kp A &kp A>, <&macro_release &kp LALT>
+        #endif
+      )
+
+      /* ¡ */ UNICODE(world_exclaim_left,
+        #if UNICODE_TARGET_OS == 1
+          <&kp LC(LS(U)) &kp A &kp N1 &kp ENTER>
+        #elif UNICODE_TARGET_OS == 2
+          <&macro_press &kp LALT>, <&macro_tap &kp N0 &kp N0 &kp A &kp N1>, <&macro_release &kp LALT>
+        #elif UNICODE_TARGET_OS == 3
+          <&macro_press &kp LALT>, <&macro_tap &kp KP_PLUS &kp A &kp KP_N1>, <&macro_release &kp LALT>
+        #endif
+      )
+
+      /* ¿ */ UNICODE(world_question_left,
+        #if UNICODE_TARGET_OS == 1
+          <&kp LC(LS(U)) &kp B &kp F &kp ENTER>
+        #elif UNICODE_TARGET_OS == 2
+          <&macro_press &kp LALT>, <&macro_tap &kp N0 &kp N0 &kp B &kp F>, <&macro_release &kp LALT>
+        #elif UNICODE_TARGET_OS == 3
+          <&macro_press &kp LALT>, <&macro_tap &kp KP_PLUS &kp B &kp F>, <&macro_release &kp LALT>
+        #endif
+      )
+
+    //
+    // characters
+    //
+
+      /* ç */ UNICODE(world_c_cedilla_lower,
+        #if UNICODE_TARGET_OS == 1
+          <&kp LC(LS(U)) &kp E &kp N7 &kp ENTER>
+        #elif UNICODE_TARGET_OS == 2
+          <&macro_press &kp LALT>, <&macro_tap &kp N0 &kp N0 &kp E &kp N7>, <&macro_release &kp LALT>
+        #elif UNICODE_TARGET_OS == 3
+          <&macro_press &kp LALT>, <&macro_tap &kp KP_PLUS &kp E &kp KP_N7>, <&macro_release &kp LALT>
+        #endif
+      )
+
+      /* Ç */ UNICODE(world_c_cedilla_upper,
+        #if UNICODE_TARGET_OS == 1
+          <&kp LC(LS(U)) &kp C &kp N7 &kp ENTER>
+        #elif UNICODE_TARGET_OS == 2
+          <&macro_press &kp LALT>, <&macro_tap &kp N0 &kp N0 &kp C &kp N7>, <&macro_release &kp LALT>
+        #elif UNICODE_TARGET_OS == 3
+          <&macro_press &kp LALT>, <&macro_tap &kp KP_PLUS &kp C &kp KP_N7>, <&macro_release &kp LALT>
+        #endif
+      )
+
+        world_c_cedilla: world_c_cedilla {
+            compatible = "zmk,behavior-mod-morph";
+            label = "WORLD_C_CEDILLA";
+            #binding-cells = <0>;
+            bindings = <&world_c_cedilla_lower>, <&world_c_cedilla_upper>;
+            mods = <MOD_LSFT>;
+        };
+
+      /* í */ UNICODE(world_i_acute_lower,
+        #if UNICODE_TARGET_OS == 1
+          <&kp LC(LS(U)) &kp E &kp D &kp ENTER>
+        #elif UNICODE_TARGET_OS == 2
+          <&macro_press &kp LALT>, <&macro_tap &kp N0 &kp N0 &kp E &kp D>, <&macro_release &kp LALT>
+        #elif UNICODE_TARGET_OS == 3
+          <&macro_press &kp LALT>, <&macro_tap &kp KP_PLUS &kp E &kp D>, <&macro_release &kp LALT>
+        #endif
+      )
+
+      /* Í */ UNICODE(world_i_acute_upper,
+        #if UNICODE_TARGET_OS == 1
+          <&kp LC(LS(U)) &kp C &kp D &kp ENTER>
+        #elif UNICODE_TARGET_OS == 2
+          <&macro_press &kp LALT>, <&macro_tap &kp N0 &kp N0 &kp C &kp D>, <&macro_release &kp LALT>
+        #elif UNICODE_TARGET_OS == 3
+          <&macro_press &kp LALT>, <&macro_tap &kp KP_PLUS &kp C &kp D>, <&macro_release &kp LALT>
+        #endif
+      )
+
+        world_i_acute: world_i_acute {
+            compatible = "zmk,behavior-mod-morph";
+            label = "WORLD_I_ACUTE";
+            #binding-cells = <0>;
+            bindings = <&world_i_acute_lower>, <&world_i_acute_upper>;
+            mods = <MOD_LSFT>;
+        };
+
+      /* ï */ UNICODE(world_i_diaeresis_lower,
+        #if UNICODE_TARGET_OS == 1
+          <&kp LC(LS(U)) &kp E &kp F &kp ENTER>
+        #elif UNICODE_TARGET_OS == 2
+          <&macro_press &kp LALT>, <&macro_tap &kp N0 &kp N0 &kp E &kp F>, <&macro_release &kp LALT>
+        #elif UNICODE_TARGET_OS == 3
+          <&macro_press &kp LALT>, <&macro_tap &kp KP_PLUS &kp E &kp F>, <&macro_release &kp LALT>
+        #endif
+      )
+
+      /* Ï */ UNICODE(world_i_diaeresis_upper,
+        #if UNICODE_TARGET_OS == 1
+          <&kp LC(LS(U)) &kp C &kp F &kp ENTER>
+        #elif UNICODE_TARGET_OS == 2
+          <&macro_press &kp LALT>, <&macro_tap &kp N0 &kp N0 &kp C &kp F>, <&macro_release &kp LALT>
+        #elif UNICODE_TARGET_OS == 3
+          <&macro_press &kp LALT>, <&macro_tap &kp KP_PLUS &kp C &kp F>, <&macro_release &kp LALT>
+        #endif
+      )
+
+        world_i_diaeresis: world_i_diaeresis {
+            compatible = "zmk,behavior-mod-morph";
+            label = "WORLD_I_DIAERESIS";
+            #binding-cells = <0>;
+            bindings = <&world_i_diaeresis_lower>, <&world_i_diaeresis_upper>;
+            mods = <MOD_LSFT>;
+        };
+
+      /* î */ UNICODE(world_i_circumflex_lower,
+        #if UNICODE_TARGET_OS == 1
+          <&kp LC(LS(U)) &kp E &kp E &kp ENTER>
+        #elif UNICODE_TARGET_OS == 2
+          <&macro_press &kp LALT>, <&macro_tap &kp N0 &kp N0 &kp E &kp E>, <&macro_release &kp LALT>
+        #elif UNICODE_TARGET_OS == 3
+          <&macro_press &kp LALT>, <&macro_tap &kp KP_PLUS &kp E &kp E>, <&macro_release &kp LALT>
+        #endif
+      )
+
+      /* Î */ UNICODE(world_i_circumflex_upper,
+        #if UNICODE_TARGET_OS == 1
+          <&kp LC(LS(U)) &kp C &kp E &kp ENTER>
+        #elif UNICODE_TARGET_OS == 2
+          <&macro_press &kp LALT>, <&macro_tap &kp N0 &kp N0 &kp C &kp E>, <&macro_release &kp LALT>
+        #elif UNICODE_TARGET_OS == 3
+          <&macro_press &kp LALT>, <&macro_tap &kp KP_PLUS &kp C &kp E>, <&macro_release &kp LALT>
+        #endif
+      )
+
+        world_i_circumflex: world_i_circumflex {
+            compatible = "zmk,behavior-mod-morph";
+            label = "WORLD_I_CIRCUMFLEX";
+            #binding-cells = <0>;
+            bindings = <&world_i_circumflex_lower>, <&world_i_circumflex_upper>;
+            mods = <MOD_LSFT>;
+        };
+
+      /* ì */ UNICODE(world_i_grave_lower,
+        #if UNICODE_TARGET_OS == 1
+          <&kp LC(LS(U)) &kp E &kp C &kp ENTER>
+        #elif UNICODE_TARGET_OS == 2
+          <&macro_press &kp LALT>, <&macro_tap &kp N0 &kp N0 &kp E &kp C>, <&macro_release &kp LALT>
+        #elif UNICODE_TARGET_OS == 3
+          <&macro_press &kp LALT>, <&macro_tap &kp KP_PLUS &kp E &kp C>, <&macro_release &kp LALT>
+        #endif
+      )
+
+      /* Ì */ UNICODE(world_i_grave_upper,
+        #if UNICODE_TARGET_OS == 1
+          <&kp LC(LS(U)) &kp C &kp C &kp ENTER>
+        #elif UNICODE_TARGET_OS == 2
+          <&macro_press &kp LALT>, <&macro_tap &kp N0 &kp N0 &kp C &kp C>, <&macro_release &kp LALT>
+        #elif UNICODE_TARGET_OS == 3
+          <&macro_press &kp LALT>, <&macro_tap &kp KP_PLUS &kp C &kp C>, <&macro_release &kp LALT>
+        #endif
+      )
+
+        world_i_grave: world_i_grave {
+            compatible = "zmk,behavior-mod-morph";
+            label = "WORLD_I_GRAVE";
+            #binding-cells = <0>;
+            bindings = <&world_i_grave_lower>, <&world_i_grave_upper>;
+            mods = <MOD_LSFT>;
+        };
+
+      /* é */ UNICODE(world_e_acute_lower,
+        #if UNICODE_TARGET_OS == 1
+          <&kp LC(LS(U)) &kp E &kp N9 &kp ENTER>
+        #elif UNICODE_TARGET_OS == 2
+          <&macro_press &kp LALT>, <&macro_tap &kp N0 &kp N0 &kp E &kp N9>, <&macro_release &kp LALT>
+        #elif UNICODE_TARGET_OS == 3
+          <&macro_press &kp LALT>, <&macro_tap &kp KP_PLUS &kp E &kp KP_N9>, <&macro_release &kp LALT>
+        #endif
+      )
+
+      /* É */ UNICODE(world_e_acute_upper,
+        #if UNICODE_TARGET_OS == 1
+          <&kp LC(LS(U)) &kp C &kp N9 &kp ENTER>
+        #elif UNICODE_TARGET_OS == 2
+          <&macro_press &kp LALT>, <&macro_tap &kp N0 &kp N0 &kp C &kp N9>, <&macro_release &kp LALT>
+        #elif UNICODE_TARGET_OS == 3
+          <&macro_press &kp LALT>, <&macro_tap &kp KP_PLUS &kp C &kp KP_N9>, <&macro_release &kp LALT>
+        #endif
+      )
+
+        world_e_acute: world_e_acute {
+            compatible = "zmk,behavior-mod-morph";
+            label = "WORLD_E_ACUTE";
+            #binding-cells = <0>;
+            bindings = <&world_e_acute_lower>, <&world_e_acute_upper>;
+            mods = <MOD_LSFT>;
+        };
+
+      /* ë */ UNICODE(world_e_diaeresis_lower,
+        #if UNICODE_TARGET_OS == 1
+          <&kp LC(LS(U)) &kp E &kp B &kp ENTER>
+        #elif UNICODE_TARGET_OS == 2
+          <&macro_press &kp LALT>, <&macro_tap &kp N0 &kp N0 &kp E &kp B>, <&macro_release &kp LALT>
+        #elif UNICODE_TARGET_OS == 3
+          <&macro_press &kp LALT>, <&macro_tap &kp KP_PLUS &kp E &kp B>, <&macro_release &kp LALT>
+        #endif
+      )
+
+      /* Ë */ UNICODE(world_e_diaeresis_upper,
+        #if UNICODE_TARGET_OS == 1
+          <&kp LC(LS(U)) &kp C &kp B &kp ENTER>
+        #elif UNICODE_TARGET_OS == 2
+          <&macro_press &kp LALT>, <&macro_tap &kp N0 &kp N0 &kp C &kp B>, <&macro_release &kp LALT>
+        #elif UNICODE_TARGET_OS == 3
+          <&macro_press &kp LALT>, <&macro_tap &kp KP_PLUS &kp C &kp B>, <&macro_release &kp LALT>
+        #endif
+      )
+
+        world_e_diaeresis: world_e_diaeresis {
+            compatible = "zmk,behavior-mod-morph";
+            label = "WORLD_E_DIAERESIS";
+            #binding-cells = <0>;
+            bindings = <&world_e_diaeresis_lower>, <&world_e_diaeresis_upper>;
+            mods = <MOD_LSFT>;
+        };
+
+      /* ê */ UNICODE(world_e_circumflex_lower,
+        #if UNICODE_TARGET_OS == 1
+          <&kp LC(LS(U)) &kp E &kp A &kp ENTER>
+        #elif UNICODE_TARGET_OS == 2
+          <&macro_press &kp LALT>, <&macro_tap &kp N0 &kp N0 &kp E &kp A>, <&macro_release &kp LALT>
+        #elif UNICODE_TARGET_OS == 3
+          <&macro_press &kp LALT>, <&macro_tap &kp KP_PLUS &kp E &kp A>, <&macro_release &kp LALT>
+        #endif
+      )
+
+      /* Ê */ UNICODE(world_e_circumflex_upper,
+        #if UNICODE_TARGET_OS == 1
+          <&kp LC(LS(U)) &kp C &kp A &kp ENTER>
+        #elif UNICODE_TARGET_OS == 2
+          <&macro_press &kp LALT>, <&macro_tap &kp N0 &kp N0 &kp C &kp A>, <&macro_release &kp LALT>
+        #elif UNICODE_TARGET_OS == 3
+          <&macro_press &kp LALT>, <&macro_tap &kp KP_PLUS &kp C &kp A>, <&macro_release &kp LALT>
+        #endif
+      )
+
+        world_e_circumflex: world_e_circumflex {
+            compatible = "zmk,behavior-mod-morph";
+            label = "WORLD_E_CIRCUMFLEX";
+            #binding-cells = <0>;
+            bindings = <&world_e_circumflex_lower>, <&world_e_circumflex_upper>;
+            mods = <MOD_LSFT>;
+        };
+
+      /* è */ UNICODE(world_e_grave_lower,
+        #if UNICODE_TARGET_OS == 1
+          <&kp LC(LS(U)) &kp E &kp N8 &kp ENTER>
+        #elif UNICODE_TARGET_OS == 2
+          <&macro_press &kp LALT>, <&macro_tap &kp N0 &kp N0 &kp E &kp N8>, <&macro_release &kp LALT>
+        #elif UNICODE_TARGET_OS == 3
+          <&macro_press &kp LALT>, <&macro_tap &kp KP_PLUS &kp E &kp KP_N8>, <&macro_release &kp LALT>
+        #endif
+      )
+
+      /* È */ UNICODE(world_e_grave_upper,
+        #if UNICODE_TARGET_OS == 1
+          <&kp LC(LS(U)) &kp C &kp N8 &kp ENTER>
+        #elif UNICODE_TARGET_OS == 2
+          <&macro_press &kp LALT>, <&macro_tap &kp N0 &kp N0 &kp C &kp N8>, <&macro_release &kp LALT>
+        #elif UNICODE_TARGET_OS == 3
+          <&macro_press &kp LALT>, <&macro_tap &kp KP_PLUS &kp C &kp KP_N8>, <&macro_release &kp LALT>
+        #endif
+      )
+
+        world_e_grave: world_e_grave {
+            compatible = "zmk,behavior-mod-morph";
+            label = "WORLD_E_GRAVE";
+            #binding-cells = <0>;
+            bindings = <&world_e_grave_lower>, <&world_e_grave_upper>;
+            mods = <MOD_LSFT>;
+        };
+
+      /* æ */ UNICODE(world_e_ae_lower,
+        #if UNICODE_TARGET_OS == 1
+          <&kp LC(LS(U)) &kp E &kp N6 &kp ENTER>
+        #elif UNICODE_TARGET_OS == 2
+          <&macro_press &kp LALT>, <&macro_tap &kp N0 &kp N0 &kp E &kp N6>, <&macro_release &kp LALT>
+        #elif UNICODE_TARGET_OS == 3
+          <&macro_press &kp LALT>, <&macro_tap &kp KP_PLUS &kp E &kp KP_N6>, <&macro_release &kp LALT>
+        #endif
+      )
+
+      /* Æ */ UNICODE(world_e_ae_upper,
+        #if UNICODE_TARGET_OS == 1
+          <&kp LC(LS(U)) &kp C &kp N6 &kp ENTER>
+        #elif UNICODE_TARGET_OS == 2
+          <&macro_press &kp LALT>, <&macro_tap &kp N0 &kp N0 &kp C &kp N6>, <&macro_release &kp LALT>
+        #elif UNICODE_TARGET_OS == 3
+          <&macro_press &kp LALT>, <&macro_tap &kp KP_PLUS &kp C &kp KP_N6>, <&macro_release &kp LALT>
+        #endif
+      )
+
+        world_e_ae: world_e_ae {
+            compatible = "zmk,behavior-mod-morph";
+            label = "WORLD_E_AE";
+            #binding-cells = <0>;
+            bindings = <&world_e_ae_lower>, <&world_e_ae_upper>;
+            mods = <MOD_LSFT>;
+        };
+
+      /* á */ UNICODE(world_a_acute_lower,
+        #if UNICODE_TARGET_OS == 1
+          <&kp LC(LS(U)) &kp E &kp N1 &kp ENTER>
+        #elif UNICODE_TARGET_OS == 2
+          <&macro_press &kp LALT>, <&macro_tap &kp N0 &kp N0 &kp E &kp N1>, <&macro_release &kp LALT>
+        #elif UNICODE_TARGET_OS == 3
+          <&macro_press &kp LALT>, <&macro_tap &kp KP_PLUS &kp E &kp KP_N1>, <&macro_release &kp LALT>
+        #endif
+      )
+
+      /* Á */ UNICODE(world_a_acute_upper,
+        #if UNICODE_TARGET_OS == 1
+          <&kp LC(LS(U)) &kp C &kp N1 &kp ENTER>
+        #elif UNICODE_TARGET_OS == 2
+          <&macro_press &kp LALT>, <&macro_tap &kp N0 &kp N0 &kp C &kp N1>, <&macro_release &kp LALT>
+        #elif UNICODE_TARGET_OS == 3
+          <&macro_press &kp LALT>, <&macro_tap &kp KP_PLUS &kp C &kp KP_N1>, <&macro_release &kp LALT>
+        #endif
+      )
+
+        world_a_acute: world_a_acute {
+            compatible = "zmk,behavior-mod-morph";
+            label = "WORLD_A_ACUTE";
+            #binding-cells = <0>;
+            bindings = <&world_a_acute_lower>, <&world_a_acute_upper>;
+            mods = <MOD_LSFT>;
+        };
+
+      /* ä */ UNICODE(world_a_diaeresis_lower,
+        #if UNICODE_TARGET_OS == 1
+          <&kp LC(LS(U)) &kp E &kp N4 &kp ENTER>
+        #elif UNICODE_TARGET_OS == 2
+          <&macro_press &kp LALT>, <&macro_tap &kp N0 &kp N0 &kp E &kp N4>, <&macro_release &kp LALT>
+        #elif UNICODE_TARGET_OS == 3
+          <&macro_press &kp LALT>, <&macro_tap &kp KP_PLUS &kp E &kp KP_N4>, <&macro_release &kp LALT>
+        #endif
+      )
+
+      /* Ä */ UNICODE(world_a_diaeresis_upper,
+        #if UNICODE_TARGET_OS == 1
+          <&kp LC(LS(U)) &kp C &kp N4 &kp ENTER>
+        #elif UNICODE_TARGET_OS == 2
+          <&macro_press &kp LALT>, <&macro_tap &kp N0 &kp N0 &kp C &kp N4>, <&macro_release &kp LALT>
+        #elif UNICODE_TARGET_OS == 3
+          <&macro_press &kp LALT>, <&macro_tap &kp KP_PLUS &kp C &kp KP_N4>, <&macro_release &kp LALT>
+        #endif
+      )
+
+        world_a_diaeresis: world_a_diaeresis {
+            compatible = "zmk,behavior-mod-morph";
+            label = "WORLD_A_DIAERESIS";
+            #binding-cells = <0>;
+            bindings = <&world_a_diaeresis_lower>, <&world_a_diaeresis_upper>;
+            mods = <MOD_LSFT>;
+        };
+
+      /* â */ UNICODE(world_a_circumflex_lower,
+        #if UNICODE_TARGET_OS == 1
+          <&kp LC(LS(U)) &kp E &kp N2 &kp ENTER>
+        #elif UNICODE_TARGET_OS == 2
+          <&macro_press &kp LALT>, <&macro_tap &kp N0 &kp N0 &kp E &kp N2>, <&macro_release &kp LALT>
+        #elif UNICODE_TARGET_OS == 3
+          <&macro_press &kp LALT>, <&macro_tap &kp KP_PLUS &kp E &kp KP_N2>, <&macro_release &kp LALT>
+        #endif
+      )
+
+      /* Â */ UNICODE(world_a_circumflex_upper,
+        #if UNICODE_TARGET_OS == 1
+          <&kp LC(LS(U)) &kp C &kp N2 &kp ENTER>
+        #elif UNICODE_TARGET_OS == 2
+          <&macro_press &kp LALT>, <&macro_tap &kp N0 &kp N0 &kp C &kp N2>, <&macro_release &kp LALT>
+        #elif UNICODE_TARGET_OS == 3
+          <&macro_press &kp LALT>, <&macro_tap &kp KP_PLUS &kp C &kp KP_N2>, <&macro_release &kp LALT>
+        #endif
+      )
+
+        world_a_circumflex: world_a_circumflex {
+            compatible = "zmk,behavior-mod-morph";
+            label = "WORLD_A_CIRCUMFLEX";
+            #binding-cells = <0>;
+            bindings = <&world_a_circumflex_lower>, <&world_a_circumflex_upper>;
+            mods = <MOD_LSFT>;
+        };
+
+      /* à */ UNICODE(world_a_grave_lower,
+        #if UNICODE_TARGET_OS == 1
+          <&kp LC(LS(U)) &kp E &kp N0 &kp ENTER>
+        #elif UNICODE_TARGET_OS == 2
+          <&macro_press &kp LALT>, <&macro_tap &kp N0 &kp N0 &kp E &kp N0>, <&macro_release &kp LALT>
+        #elif UNICODE_TARGET_OS == 3
+          <&macro_press &kp LALT>, <&macro_tap &kp KP_PLUS &kp E &kp KP_N0>, <&macro_release &kp LALT>
+        #endif
+      )
+
+      /* À */ UNICODE(world_a_grave_upper,
+        #if UNICODE_TARGET_OS == 1
+          <&kp LC(LS(U)) &kp C &kp N0 &kp ENTER>
+        #elif UNICODE_TARGET_OS == 2
+          <&macro_press &kp LALT>, <&macro_tap &kp N0 &kp N0 &kp C &kp N0>, <&macro_release &kp LALT>
+        #elif UNICODE_TARGET_OS == 3
+          <&macro_press &kp LALT>, <&macro_tap &kp KP_PLUS &kp C &kp KP_N0>, <&macro_release &kp LALT>
+        #endif
+      )
+
+        world_a_grave: world_a_grave {
+            compatible = "zmk,behavior-mod-morph";
+            label = "WORLD_A_GRAVE";
+            #binding-cells = <0>;
+            bindings = <&world_a_grave_lower>, <&world_a_grave_upper>;
+            mods = <MOD_LSFT>;
+        };
+
+      /* ã */ UNICODE(world_a_tilde_lower,
+        #if UNICODE_TARGET_OS == 1
+          <&kp LC(LS(U)) &kp E &kp N3 &kp ENTER>
+        #elif UNICODE_TARGET_OS == 2
+          <&macro_press &kp LALT>, <&macro_tap &kp N0 &kp N0 &kp E &kp N3>, <&macro_release &kp LALT>
+        #elif UNICODE_TARGET_OS == 3
+          <&macro_press &kp LALT>, <&macro_tap &kp KP_PLUS &kp E &kp KP_N3>, <&macro_release &kp LALT>
+        #endif
+      )
+
+      /* Ã */ UNICODE(world_a_tilde_upper,
+        #if UNICODE_TARGET_OS == 1
+          <&kp LC(LS(U)) &kp C &kp N3 &kp ENTER>
+        #elif UNICODE_TARGET_OS == 2
+          <&macro_press &kp LALT>, <&macro_tap &kp N0 &kp N0 &kp C &kp N3>, <&macro_release &kp LALT>
+        #elif UNICODE_TARGET_OS == 3
+          <&macro_press &kp LALT>, <&macro_tap &kp KP_PLUS &kp C &kp KP_N3>, <&macro_release &kp LALT>
+        #endif
+      )
+
+        world_a_tilde: world_a_tilde {
+            compatible = "zmk,behavior-mod-morph";
+            label = "WORLD_A_TILDE";
+            #binding-cells = <0>;
+            bindings = <&world_a_tilde_lower>, <&world_a_tilde_upper>;
+            mods = <MOD_LSFT>;
+        };
+
+      /* å */ UNICODE(world_a_ring_lower,
+        #if UNICODE_TARGET_OS == 1
+          <&kp LC(LS(U)) &kp E &kp N5 &kp ENTER>
+        #elif UNICODE_TARGET_OS == 2
+          <&macro_press &kp LALT>, <&macro_tap &kp N0 &kp N0 &kp E &kp N5>, <&macro_release &kp LALT>
+        #elif UNICODE_TARGET_OS == 3
+          <&macro_press &kp LALT>, <&macro_tap &kp KP_PLUS &kp E &kp KP_N5>, <&macro_release &kp LALT>
+        #endif
+      )
+
+      /* Å */ UNICODE(world_a_ring_upper,
+        #if UNICODE_TARGET_OS == 1
+          <&kp LC(LS(U)) &kp C &kp N5 &kp ENTER>
+        #elif UNICODE_TARGET_OS == 2
+          <&macro_press &kp LALT>, <&macro_tap &kp N0 &kp N0 &kp C &kp N5>, <&macro_release &kp LALT>
+        #elif UNICODE_TARGET_OS == 3
+          <&macro_press &kp LALT>, <&macro_tap &kp KP_PLUS &kp C &kp KP_N5>, <&macro_release &kp LALT>
+        #endif
+      )
+
+        world_a_ring: world_a_ring {
+            compatible = "zmk,behavior-mod-morph";
+            label = "WORLD_A_RING";
+            #binding-cells = <0>;
+            bindings = <&world_a_ring_lower>, <&world_a_ring_upper>;
+            mods = <MOD_LSFT>;
+        };
+
+      /* ý */ UNICODE(world_y_acute_lower,
+        #if UNICODE_TARGET_OS == 1
+          <&kp LC(LS(U)) &kp F &kp D &kp ENTER>
+        #elif UNICODE_TARGET_OS == 2
+          <&macro_press &kp LALT>, <&macro_tap &kp N0 &kp N0 &kp F &kp D>, <&macro_release &kp LALT>
+        #elif UNICODE_TARGET_OS == 3
+          <&macro_press &kp LALT>, <&macro_tap &kp KP_PLUS &kp F &kp D>, <&macro_release &kp LALT>
+        #endif
+      )
+
+      /* Ý */ UNICODE(world_y_acute_upper,
+        #if UNICODE_TARGET_OS == 1
+          <&kp LC(LS(U)) &kp D &kp D &kp ENTER>
+        #elif UNICODE_TARGET_OS == 2
+          <&macro_press &kp LALT>, <&macro_tap &kp N0 &kp N0 &kp D &kp D>, <&macro_release &kp LALT>
+        #elif UNICODE_TARGET_OS == 3
+          <&macro_press &kp LALT>, <&macro_tap &kp KP_PLUS &kp D &kp D>, <&macro_release &kp LALT>
+        #endif
+      )
+
+        world_y_acute: world_y_acute {
+            compatible = "zmk,behavior-mod-morph";
+            label = "WORLD_Y_ACUTE";
+            #binding-cells = <0>;
+            bindings = <&world_y_acute_lower>, <&world_y_acute_upper>;
+            mods = <MOD_LSFT>;
+        };
+
+      /* ÿ */ UNICODE(world_y_diaeresis_lower,
+        #if UNICODE_TARGET_OS == 1
+          <&kp LC(LS(U)) &kp F &kp F &kp ENTER>
+        #elif UNICODE_TARGET_OS == 2
+          <&macro_press &kp LALT>, <&macro_tap &kp N0 &kp N0 &kp F &kp F>, <&macro_release &kp LALT>
+        #elif UNICODE_TARGET_OS == 3
+          <&macro_press &kp LALT>, <&macro_tap &kp KP_PLUS &kp F &kp F>, <&macro_release &kp LALT>
+        #endif
+      )
+
+      /* Ÿ */ UNICODE(world_y_diaeresis_upper,
+        #if UNICODE_TARGET_OS == 1
+          <&kp LC(LS(U)) &kp N1 &kp N7 &kp N8 &kp ENTER>
+        #elif UNICODE_TARGET_OS == 2
+          <&macro_press &kp LALT>, <&macro_tap &kp N0 &kp N1 &kp N7 &kp N8>, <&macro_release &kp LALT>
+        #elif UNICODE_TARGET_OS == 3
+          <&macro_press &kp LALT>, <&macro_tap &kp KP_PLUS &kp KP_N1 &kp KP_N7 &kp KP_N8>, <&macro_release &kp LALT>
+        #endif
+      )
+
+        world_y_diaeresis: world_y_diaeresis {
+            compatible = "zmk,behavior-mod-morph";
+            label = "WORLD_Y_DIAERESIS";
+            #binding-cells = <0>;
+            bindings = <&world_y_diaeresis_lower>, <&world_y_diaeresis_upper>;
+            mods = <MOD_LSFT>;
+        };
+
+      /* ó */ UNICODE(world_o_acute_lower,
+        #if UNICODE_TARGET_OS == 1
+          <&kp LC(LS(U)) &kp F &kp N3 &kp ENTER>
+        #elif UNICODE_TARGET_OS == 2
+          <&macro_press &kp LALT>, <&macro_tap &kp N0 &kp N0 &kp F &kp N3>, <&macro_release &kp LALT>
+        #elif UNICODE_TARGET_OS == 3
+          <&macro_press &kp LALT>, <&macro_tap &kp KP_PLUS &kp F &kp KP_N3>, <&macro_release &kp LALT>
+        #endif
+      )
+
+      /* Ó */ UNICODE(world_o_acute_upper,
+        #if UNICODE_TARGET_OS == 1
+          <&kp LC(LS(U)) &kp D &kp N3 &kp ENTER>
+        #elif UNICODE_TARGET_OS == 2
+          <&macro_press &kp LALT>, <&macro_tap &kp N0 &kp N0 &kp D &kp N3>, <&macro_release &kp LALT>
+        #elif UNICODE_TARGET_OS == 3
+          <&macro_press &kp LALT>, <&macro_tap &kp KP_PLUS &kp D &kp KP_N3>, <&macro_release &kp LALT>
+        #endif
+      )
+
+        world_o_acute: world_o_acute {
+            compatible = "zmk,behavior-mod-morph";
+            label = "WORLD_O_ACUTE";
+            #binding-cells = <0>;
+            bindings = <&world_o_acute_lower>, <&world_o_acute_upper>;
+            mods = <MOD_LSFT>;
+        };
+
+      /* ö */ UNICODE(world_o_diaeresis_lower,
+        #if UNICODE_TARGET_OS == 1
+          <&kp LC(LS(U)) &kp F &kp N6 &kp ENTER>
+        #elif UNICODE_TARGET_OS == 2
+          <&macro_press &kp LALT>, <&macro_tap &kp N0 &kp N0 &kp F &kp N6>, <&macro_release &kp LALT>
+        #elif UNICODE_TARGET_OS == 3
+          <&macro_press &kp LALT>, <&macro_tap &kp KP_PLUS &kp F &kp KP_N6>, <&macro_release &kp LALT>
+        #endif
+      )
+
+      /* Ö */ UNICODE(world_o_diaeresis_upper,
+        #if UNICODE_TARGET_OS == 1
+          <&kp LC(LS(U)) &kp D &kp N6 &kp ENTER>
+        #elif UNICODE_TARGET_OS == 2
+          <&macro_press &kp LALT>, <&macro_tap &kp N0 &kp N0 &kp D &kp N6>, <&macro_release &kp LALT>
+        #elif UNICODE_TARGET_OS == 3
+          <&macro_press &kp LALT>, <&macro_tap &kp KP_PLUS &kp D &kp KP_N6>, <&macro_release &kp LALT>
+        #endif
+      )
+
+        world_o_diaeresis: world_o_diaeresis {
+            compatible = "zmk,behavior-mod-morph";
+            label = "WORLD_O_DIAERESIS";
+            #binding-cells = <0>;
+            bindings = <&world_o_diaeresis_lower>, <&world_o_diaeresis_upper>;
+            mods = <MOD_LSFT>;
+        };
+
+      /* ô */ UNICODE(world_o_circumflex_lower,
+        #if UNICODE_TARGET_OS == 1
+          <&kp LC(LS(U)) &kp F &kp N4 &kp ENTER>
+        #elif UNICODE_TARGET_OS == 2
+          <&macro_press &kp LALT>, <&macro_tap &kp N0 &kp N0 &kp F &kp N4>, <&macro_release &kp LALT>
+        #elif UNICODE_TARGET_OS == 3
+          <&macro_press &kp LALT>, <&macro_tap &kp KP_PLUS &kp F &kp KP_N4>, <&macro_release &kp LALT>
+        #endif
+      )
+
+      /* Ô */ UNICODE(world_o_circumflex_upper,
+        #if UNICODE_TARGET_OS == 1
+          <&kp LC(LS(U)) &kp D &kp N4 &kp ENTER>
+        #elif UNICODE_TARGET_OS == 2
+          <&macro_press &kp LALT>, <&macro_tap &kp N0 &kp N0 &kp D &kp N4>, <&macro_release &kp LALT>
+        #elif UNICODE_TARGET_OS == 3
+          <&macro_press &kp LALT>, <&macro_tap &kp KP_PLUS &kp D &kp KP_N4>, <&macro_release &kp LALT>
+        #endif
+      )
+
+        world_o_circumflex: world_o_circumflex {
+            compatible = "zmk,behavior-mod-morph";
+            label = "WORLD_O_CIRCUMFLEX";
+            #binding-cells = <0>;
+            bindings = <&world_o_circumflex_lower>, <&world_o_circumflex_upper>;
+            mods = <MOD_LSFT>;
+        };
+
+      /* ò */ UNICODE(world_o_grave_lower,
+        #if UNICODE_TARGET_OS == 1
+          <&kp LC(LS(U)) &kp F &kp N2 &kp ENTER>
+        #elif UNICODE_TARGET_OS == 2
+          <&macro_press &kp LALT>, <&macro_tap &kp N0 &kp N0 &kp F &kp N2>, <&macro_release &kp LALT>
+        #elif UNICODE_TARGET_OS == 3
+          <&macro_press &kp LALT>, <&macro_tap &kp KP_PLUS &kp F &kp KP_N2>, <&macro_release &kp LALT>
+        #endif
+      )
+
+      /* Ò */ UNICODE(world_o_grave_upper,
+        #if UNICODE_TARGET_OS == 1
+          <&kp LC(LS(U)) &kp D &kp N2 &kp ENTER>
+        #elif UNICODE_TARGET_OS == 2
+          <&macro_press &kp LALT>, <&macro_tap &kp N0 &kp N0 &kp D &kp N2>, <&macro_release &kp LALT>
+        #elif UNICODE_TARGET_OS == 3
+          <&macro_press &kp LALT>, <&macro_tap &kp KP_PLUS &kp D &kp KP_N2>, <&macro_release &kp LALT>
+        #endif
+      )
+
+        world_o_grave: world_o_grave {
+            compatible = "zmk,behavior-mod-morph";
+            label = "WORLD_O_GRAVE";
+            #binding-cells = <0>;
+            bindings = <&world_o_grave_lower>, <&world_o_grave_upper>;
+            mods = <MOD_LSFT>;
+        };
+
+      /* õ */ UNICODE(world_o_tilde_lower,
+        #if UNICODE_TARGET_OS == 1
+          <&kp LC(LS(U)) &kp F &kp N5 &kp ENTER>
+        #elif UNICODE_TARGET_OS == 2
+          <&macro_press &kp LALT>, <&macro_tap &kp N0 &kp N0 &kp F &kp N5>, <&macro_release &kp LALT>
+        #elif UNICODE_TARGET_OS == 3
+          <&macro_press &kp LALT>, <&macro_tap &kp KP_PLUS &kp F &kp KP_N5>, <&macro_release &kp LALT>
+        #endif
+      )
+
+      /* Õ */ UNICODE(world_o_tilde_upper,
+        #if UNICODE_TARGET_OS == 1
+          <&kp LC(LS(U)) &kp D &kp N5 &kp ENTER>
+        #elif UNICODE_TARGET_OS == 2
+          <&macro_press &kp LALT>, <&macro_tap &kp N0 &kp N0 &kp D &kp N5>, <&macro_release &kp LALT>
+        #elif UNICODE_TARGET_OS == 3
+          <&macro_press &kp LALT>, <&macro_tap &kp KP_PLUS &kp D &kp KP_N5>, <&macro_release &kp LALT>
+        #endif
+      )
+
+        world_o_tilde: world_o_tilde {
+            compatible = "zmk,behavior-mod-morph";
+            label = "WORLD_O_TILDE";
+            #binding-cells = <0>;
+            bindings = <&world_o_tilde_lower>, <&world_o_tilde_upper>;
+            mods = <MOD_LSFT>;
+        };
+
+      /* ø */ UNICODE(world_o_slash_lower,
+        #if UNICODE_TARGET_OS == 1
+          <&kp LC(LS(U)) &kp F &kp N8 &kp ENTER>
+        #elif UNICODE_TARGET_OS == 2
+          <&macro_press &kp LALT>, <&macro_tap &kp N0 &kp N0 &kp F &kp N8>, <&macro_release &kp LALT>
+        #elif UNICODE_TARGET_OS == 3
+          <&macro_press &kp LALT>, <&macro_tap &kp KP_PLUS &kp F &kp KP_N8>, <&macro_release &kp LALT>
+        #endif
+      )
+
+      /* Ø */ UNICODE(world_o_slash_upper,
+        #if UNICODE_TARGET_OS == 1
+          <&kp LC(LS(U)) &kp D &kp N8 &kp ENTER>
+        #elif UNICODE_TARGET_OS == 2
+          <&macro_press &kp LALT>, <&macro_tap &kp N0 &kp N0 &kp D &kp N8>, <&macro_release &kp LALT>
+        #elif UNICODE_TARGET_OS == 3
+          <&macro_press &kp LALT>, <&macro_tap &kp KP_PLUS &kp D &kp KP_N8>, <&macro_release &kp LALT>
+        #endif
+      )
+
+        world_o_slash: world_o_slash {
+            compatible = "zmk,behavior-mod-morph";
+            label = "WORLD_O_SLASH";
+            #binding-cells = <0>;
+            bindings = <&world_o_slash_lower>, <&world_o_slash_upper>;
+            mods = <MOD_LSFT>;
+        };
+
+      /* ú */ UNICODE(world_u_acute_lower,
+        #if UNICODE_TARGET_OS == 1
+          <&kp LC(LS(U)) &kp F &kp A &kp ENTER>
+        #elif UNICODE_TARGET_OS == 2
+          <&macro_press &kp LALT>, <&macro_tap &kp N0 &kp N0 &kp F &kp A>, <&macro_release &kp LALT>
+        #elif UNICODE_TARGET_OS == 3
+          <&macro_press &kp LALT>, <&macro_tap &kp KP_PLUS &kp F &kp A>, <&macro_release &kp LALT>
+        #endif
+      )
+
+      /* Ú */ UNICODE(world_u_acute_upper,
+        #if UNICODE_TARGET_OS == 1
+          <&kp LC(LS(U)) &kp D &kp A &kp ENTER>
+        #elif UNICODE_TARGET_OS == 2
+          <&macro_press &kp LALT>, <&macro_tap &kp N0 &kp N0 &kp D &kp A>, <&macro_release &kp LALT>
+        #elif UNICODE_TARGET_OS == 3
+          <&macro_press &kp LALT>, <&macro_tap &kp KP_PLUS &kp D &kp A>, <&macro_release &kp LALT>
+        #endif
+      )
+
+        world_u_acute: world_u_acute {
+            compatible = "zmk,behavior-mod-morph";
+            label = "WORLD_U_ACUTE";
+            #binding-cells = <0>;
+            bindings = <&world_u_acute_lower>, <&world_u_acute_upper>;
+            mods = <MOD_LSFT>;
+        };
+
+      /* ü */ UNICODE(world_u_diaeresis_lower,
+        #if UNICODE_TARGET_OS == 1
+          <&kp LC(LS(U)) &kp F &kp C &kp ENTER>
+        #elif UNICODE_TARGET_OS == 2
+          <&macro_press &kp LALT>, <&macro_tap &kp N0 &kp N0 &kp F &kp C>, <&macro_release &kp LALT>
+        #elif UNICODE_TARGET_OS == 3
+          <&macro_press &kp LALT>, <&macro_tap &kp KP_PLUS &kp F &kp C>, <&macro_release &kp LALT>
+        #endif
+      )
+
+      /* Ü */ UNICODE(world_u_diaeresis_upper,
+        #if UNICODE_TARGET_OS == 1
+          <&kp LC(LS(U)) &kp D &kp C &kp ENTER>
+        #elif UNICODE_TARGET_OS == 2
+          <&macro_press &kp LALT>, <&macro_tap &kp N0 &kp N0 &kp D &kp C>, <&macro_release &kp LALT>
+        #elif UNICODE_TARGET_OS == 3
+          <&macro_press &kp LALT>, <&macro_tap &kp KP_PLUS &kp D &kp C>, <&macro_release &kp LALT>
+        #endif
+      )
+
+        world_u_diaeresis: world_u_diaeresis {
+            compatible = "zmk,behavior-mod-morph";
+            label = "WORLD_U_DIAERESIS";
+            #binding-cells = <0>;
+            bindings = <&world_u_diaeresis_lower>, <&world_u_diaeresis_upper>;
+            mods = <MOD_LSFT>;
+        };
+
+      /* û */ UNICODE(world_u_circumflex_lower,
+        #if UNICODE_TARGET_OS == 1
+          <&kp LC(LS(U)) &kp F &kp B &kp ENTER>
+        #elif UNICODE_TARGET_OS == 2
+          <&macro_press &kp LALT>, <&macro_tap &kp N0 &kp N0 &kp F &kp B>, <&macro_release &kp LALT>
+        #elif UNICODE_TARGET_OS == 3
+          <&macro_press &kp LALT>, <&macro_tap &kp KP_PLUS &kp F &kp B>, <&macro_release &kp LALT>
+        #endif
+      )
+
+      /* Û */ UNICODE(world_u_circumflex_upper,
+        #if UNICODE_TARGET_OS == 1
+          <&kp LC(LS(U)) &kp D &kp B &kp ENTER>
+        #elif UNICODE_TARGET_OS == 2
+          <&macro_press &kp LALT>, <&macro_tap &kp N0 &kp N0 &kp D &kp B>, <&macro_release &kp LALT>
+        #elif UNICODE_TARGET_OS == 3
+          <&macro_press &kp LALT>, <&macro_tap &kp KP_PLUS &kp D &kp B>, <&macro_release &kp LALT>
+        #endif
+      )
+
+        world_u_circumflex: world_u_circumflex {
+            compatible = "zmk,behavior-mod-morph";
+            label = "WORLD_U_CIRCUMFLEX";
+            #binding-cells = <0>;
+            bindings = <&world_u_circumflex_lower>, <&world_u_circumflex_upper>;
+            mods = <MOD_LSFT>;
+        };
+
+      /* ù */ UNICODE(world_u_grave_lower,
+        #if UNICODE_TARGET_OS == 1
+          <&kp LC(LS(U)) &kp F &kp N9 &kp ENTER>
+        #elif UNICODE_TARGET_OS == 2
+          <&macro_press &kp LALT>, <&macro_tap &kp N0 &kp N0 &kp F &kp N9>, <&macro_release &kp LALT>
+        #elif UNICODE_TARGET_OS == 3
+          <&macro_press &kp LALT>, <&macro_tap &kp KP_PLUS &kp F &kp KP_N9>, <&macro_release &kp LALT>
+        #endif
+      )
+
+      /* Ù */ UNICODE(world_u_grave_upper,
+        #if UNICODE_TARGET_OS == 1
+          <&kp LC(LS(U)) &kp D &kp N9 &kp ENTER>
+        #elif UNICODE_TARGET_OS == 2
+          <&macro_press &kp LALT>, <&macro_tap &kp N0 &kp N0 &kp D &kp N9>, <&macro_release &kp LALT>
+        #elif UNICODE_TARGET_OS == 3
+          <&macro_press &kp LALT>, <&macro_tap &kp KP_PLUS &kp D &kp KP_N9>, <&macro_release &kp LALT>
+        #endif
+      )
+
+        world_u_grave: world_u_grave {
+            compatible = "zmk,behavior-mod-morph";
+            label = "WORLD_U_GRAVE";
+            #binding-cells = <0>;
+            bindings = <&world_u_grave_lower>, <&world_u_grave_upper>;
+            mods = <MOD_LSFT>;
+        };
+
+      /* ñ */ UNICODE(world_n_tilde_lower,
+        #if UNICODE_TARGET_OS == 1
+          <&kp LC(LS(U)) &kp F &kp N1 &kp ENTER>
+        #elif UNICODE_TARGET_OS == 2
+          <&macro_press &kp LALT>, <&macro_tap &kp N0 &kp N0 &kp F &kp N1>, <&macro_release &kp LALT>
+        #elif UNICODE_TARGET_OS == 3
+          <&macro_press &kp LALT>, <&macro_tap &kp KP_PLUS &kp F &kp KP_N1>, <&macro_release &kp LALT>
+        #endif
+      )
+
+      /* Ñ */ UNICODE(world_n_tilde_upper,
+        #if UNICODE_TARGET_OS == 1
+          <&kp LC(LS(U)) &kp D &kp N1 &kp ENTER>
+        #elif UNICODE_TARGET_OS == 2
+          <&macro_press &kp LALT>, <&macro_tap &kp N0 &kp N0 &kp D &kp N1>, <&macro_release &kp LALT>
+        #elif UNICODE_TARGET_OS == 3
+          <&macro_press &kp LALT>, <&macro_tap &kp KP_PLUS &kp D &kp KP_N1>, <&macro_release &kp LALT>
+        #endif
+      )
+
+        world_n_tilde: world_n_tilde {
+            compatible = "zmk,behavior-mod-morph";
+            label = "WORLD_N_TILDE";
+            #binding-cells = <0>;
+            bindings = <&world_n_tilde_lower>, <&world_n_tilde_upper>;
+            mods = <MOD_LSFT>;
+        };
+
+      /* ' */ UNICODE(world_quotes_plain_lower,
+        #if UNICODE_TARGET_OS == 1
+          <&kp LC(LS(U)) &kp N2 &kp N7 &kp ENTER>
+        #elif UNICODE_TARGET_OS == 2
+          <&macro_press &kp LALT>, <&macro_tap &kp N0 &kp N0 &kp N2 &kp N7>, <&macro_release &kp LALT>
+        #elif UNICODE_TARGET_OS == 3
+          <&macro_press &kp LALT>, <&macro_tap &kp KP_PLUS &kp KP_N2 &kp KP_N7>, <&macro_release &kp LALT>
+        #endif
+      )
+
+      /* " */ UNICODE(world_quotes_plain_upper,
+        #if UNICODE_TARGET_OS == 1
+          <&kp LC(LS(U)) &kp N2 &kp N2 &kp ENTER>
+        #elif UNICODE_TARGET_OS == 2
+          <&macro_press &kp LALT>, <&macro_tap &kp N0 &kp N0 &kp N2 &kp N2>, <&macro_release &kp LALT>
+        #elif UNICODE_TARGET_OS == 3
+          <&macro_press &kp LALT>, <&macro_tap &kp KP_PLUS &kp KP_N2 &kp KP_N2>, <&macro_release &kp LALT>
+        #endif
+      )
+
+        world_quotes_plain: world_quotes_plain {
+            compatible = "zmk,behavior-mod-morph";
+            label = "WORLD_QUOTES_PLAIN";
+            #binding-cells = <0>;
+            bindings = <&world_quotes_plain_lower>, <&world_quotes_plain_upper>;
+            mods = <MOD_LSFT>;
+        };
+
+      /* ` */ UNICODE(world_quotes_grave_lower,
+        #if UNICODE_TARGET_OS == 1
+          <&kp LC(LS(U)) &kp N6 &kp N0 &kp ENTER>
+        #elif UNICODE_TARGET_OS == 2
+          <&macro_press &kp LALT>, <&macro_tap &kp N0 &kp N0 &kp N6 &kp N0>, <&macro_release &kp LALT>
+        #elif UNICODE_TARGET_OS == 3
+          <&macro_press &kp LALT>, <&macro_tap &kp KP_PLUS &kp KP_N6 &kp KP_N0>, <&macro_release &kp LALT>
+        #endif
+      )
+
+      /* ´ */ UNICODE(world_quotes_grave_upper,
+        #if UNICODE_TARGET_OS == 1
+          <&kp LC(LS(U)) &kp B &kp N4 &kp ENTER>
+        #elif UNICODE_TARGET_OS == 2
+          <&macro_press &kp LALT>, <&macro_tap &kp N0 &kp N0 &kp B &kp N4>, <&macro_release &kp LALT>
+        #elif UNICODE_TARGET_OS == 3
+          <&macro_press &kp LALT>, <&macro_tap &kp KP_PLUS &kp B &kp KP_N4>, <&macro_release &kp LALT>
+        #endif
+      )
+
+        world_quotes_grave: world_quotes_grave {
+            compatible = "zmk,behavior-mod-morph";
+            label = "WORLD_QUOTES_GRAVE";
+            #binding-cells = <0>;
+            bindings = <&world_quotes_grave_lower>, <&world_quotes_grave_upper>;
+            mods = <MOD_LSFT>;
+        };
+
+      /* « */ UNICODE(world_quotes_angle_lower,
+        #if UNICODE_TARGET_OS == 1
+          <&kp LC(LS(U)) &kp A &kp B &kp ENTER>
+        #elif UNICODE_TARGET_OS == 2
+          <&macro_press &kp LALT>, <&macro_tap &kp N0 &kp N0 &kp A &kp B>, <&macro_release &kp LALT>
+        #elif UNICODE_TARGET_OS == 3
+          <&macro_press &kp LALT>, <&macro_tap &kp KP_PLUS &kp A &kp B>, <&macro_release &kp LALT>
+        #endif
+      )
+
+      /* » */ UNICODE(world_quotes_angle_upper,
+        #if UNICODE_TARGET_OS == 1
+          <&kp LC(LS(U)) &kp B &kp B &kp ENTER>
+        #elif UNICODE_TARGET_OS == 2
+          <&macro_press &kp LALT>, <&macro_tap &kp N0 &kp N0 &kp B &kp B>, <&macro_release &kp LALT>
+        #elif UNICODE_TARGET_OS == 3
+          <&macro_press &kp LALT>, <&macro_tap &kp KP_PLUS &kp B &kp B>, <&macro_release &kp LALT>
+        #endif
+      )
+
+        world_quotes_angle: world_quotes_angle {
+            compatible = "zmk,behavior-mod-morph";
+            label = "WORLD_QUOTES_ANGLE";
+            #binding-cells = <0>;
+            bindings = <&world_quotes_angle_lower>, <&world_quotes_angle_upper>;
+            mods = <MOD_LSFT>;
+        };
+
+      /* ‘ */ UNICODE(world_quotes_curly1_lower,
+        #if UNICODE_TARGET_OS == 1
+          <&kp LC(LS(U)) &kp N2 &kp N0 &kp N1 &kp N8 &kp ENTER>
+        #elif UNICODE_TARGET_OS == 2
+          <&macro_press &kp LALT>, <&macro_tap &kp N2 &kp N0 &kp N1 &kp N8>, <&macro_release &kp LALT>
+        #elif UNICODE_TARGET_OS == 3
+          <&macro_press &kp LALT>, <&macro_tap &kp KP_PLUS &kp KP_N2 &kp KP_N0 &kp KP_N1 &kp KP_N8>, <&macro_release &kp LALT>
+        #endif
+      )
+
+      /* ’ */ UNICODE(world_quotes_curly1_upper,
+        #if UNICODE_TARGET_OS == 1
+          <&kp LC(LS(U)) &kp N2 &kp N0 &kp N1 &kp N9 &kp ENTER>
+        #elif UNICODE_TARGET_OS == 2
+          <&macro_press &kp LALT>, <&macro_tap &kp N2 &kp N0 &kp N1 &kp N9>, <&macro_release &kp LALT>
+        #elif UNICODE_TARGET_OS == 3
+          <&macro_press &kp LALT>, <&macro_tap &kp KP_PLUS &kp KP_N2 &kp KP_N0 &kp KP_N1 &kp KP_N9>, <&macro_release &kp LALT>
+        #endif
+      )
+
+        world_quotes_curly1: world_quotes_curly1 {
+            compatible = "zmk,behavior-mod-morph";
+            label = "WORLD_QUOTES_CURLY1";
+            #binding-cells = <0>;
+            bindings = <&world_quotes_curly1_lower>, <&world_quotes_curly1_upper>;
+            mods = <MOD_LSFT>;
+        };
+
+      /* “ */ UNICODE(world_quotes_curly2_lower,
+        #if UNICODE_TARGET_OS == 1
+          <&kp LC(LS(U)) &kp N2 &kp N0 &kp N1 &kp C &kp ENTER>
+        #elif UNICODE_TARGET_OS == 2
+          <&macro_press &kp LALT>, <&macro_tap &kp N2 &kp N0 &kp N1 &kp C>, <&macro_release &kp LALT>
+        #elif UNICODE_TARGET_OS == 3
+          <&macro_press &kp LALT>, <&macro_tap &kp KP_PLUS &kp KP_N2 &kp KP_N0 &kp KP_N1 &kp C>, <&macro_release &kp LALT>
+        #endif
+      )
+
+      /* ” */ UNICODE(world_quotes_curly2_upper,
+        #if UNICODE_TARGET_OS == 1
+          <&kp LC(LS(U)) &kp N2 &kp N0 &kp N1 &kp D &kp ENTER>
+        #elif UNICODE_TARGET_OS == 2
+          <&macro_press &kp LALT>, <&macro_tap &kp N2 &kp N0 &kp N1 &kp D>, <&macro_release &kp LALT>
+        #elif UNICODE_TARGET_OS == 3
+          <&macro_press &kp LALT>, <&macro_tap &kp KP_PLUS &kp KP_N2 &kp KP_N0 &kp KP_N1 &kp D>, <&macro_release &kp LALT>
+        #endif
+      )
+
+        world_quotes_curly2: world_quotes_curly2 {
+            compatible = "zmk,behavior-mod-morph";
+            label = "WORLD_QUOTES_CURLY2";
+            #binding-cells = <0>;
+            bindings = <&world_quotes_curly2_lower>, <&world_quotes_curly2_upper>;
+            mods = <MOD_LSFT>;
+        };
+
+    //
+    // transforms
+    //
+
+        world_i_base: world_i_base {
+            compatible = "zmk,behavior-mod-morph";
+            label = "WORLD_I_BASE";
+            #binding-cells = <0>;
+            bindings = <&world_i_diaeresis>, <&world_i_RALT>;
+            mods = <(MOD_RALT|MOD_RCTL|MOD_RSFT)>;
+        };
+
+        world_i_RALT: world_i_RALT {
+            compatible = "zmk,behavior-mod-morph";
+            label = "WORLD_I_RALT";
+            #binding-cells = <0>;
+            bindings = <&world_i_circumflex>, <&world_i_RCTL>;
+            mods = <(MOD_RCTL|MOD_RSFT)>;
+        };
+
+        world_i_RCTL: world_i_RCTL {
+            compatible = "zmk,behavior-mod-morph";
+            label = "WORLD_I_RCTL";
+            #binding-cells = <0>;
+            bindings = <&world_i_acute>, <&world_i_grave>;
+            mods = <(MOD_RSFT)>;
+        };
+
+        world_e_base: world_e_base {
+            compatible = "zmk,behavior-mod-morph";
+            label = "WORLD_E_BASE";
+            #binding-cells = <0>;
+            bindings = <&world_e_diaeresis>, <&world_e_RALT>;
+            mods = <(MOD_RALT|MOD_LCTL|MOD_RCTL|MOD_RSFT)>;
+        };
+
+        world_e_RALT: world_e_RALT {
+            compatible = "zmk,behavior-mod-morph";
+            label = "WORLD_E_RALT";
+            #binding-cells = <0>;
+            bindings = <&world_e_circumflex>, <&world_e_LCTL>;
+            mods = <(MOD_LCTL|MOD_RCTL|MOD_RSFT)>;
+        };
+
+        world_e_LCTL: world_e_LCTL {
+            compatible = "zmk,behavior-mod-morph";
+            label = "WORLD_E_LCTL";
+            #binding-cells = <0>;
+            bindings = <&world_e_ae>, <&world_e_RCTL>;
+            mods = <(MOD_RCTL|MOD_RSFT)>;
+        };
+
+        world_e_RCTL: world_e_RCTL {
+            compatible = "zmk,behavior-mod-morph";
+            label = "WORLD_E_RCTL";
+            #binding-cells = <0>;
+            bindings = <&world_e_acute>, <&world_e_grave>;
+            mods = <(MOD_RSFT)>;
+        };
+
+        world_a_base: world_a_base {
+            compatible = "zmk,behavior-mod-morph";
+            label = "WORLD_A_BASE";
+            #binding-cells = <0>;
+            bindings = <&world_a_diaeresis>, <&world_a_LALT>;
+            mods = <(MOD_LALT|MOD_RALT|MOD_LCTL|MOD_RCTL|MOD_RSFT)>;
+        };
+
+        world_a_LALT: world_a_LALT {
+            compatible = "zmk,behavior-mod-morph";
+            label = "WORLD_A_LALT";
+            #binding-cells = <0>;
+            bindings = <&world_a_tilde>, <&world_a_RALT>;
+            mods = <(MOD_RALT|MOD_LCTL|MOD_RCTL|MOD_RSFT)>;
+        };
+
+        world_a_RALT: world_a_RALT {
+            compatible = "zmk,behavior-mod-morph";
+            label = "WORLD_A_RALT";
+            #binding-cells = <0>;
+            bindings = <&world_a_circumflex>, <&world_a_LCTL>;
+            mods = <(MOD_LCTL|MOD_RCTL|MOD_RSFT)>;
+        };
+
+        world_a_LCTL: world_a_LCTL {
+            compatible = "zmk,behavior-mod-morph";
+            label = "WORLD_A_LCTL";
+            #binding-cells = <0>;
+            bindings = <&world_a_ring>, <&world_a_RCTL>;
+            mods = <(MOD_RCTL|MOD_RSFT)>;
+        };
+
+        world_a_RCTL: world_a_RCTL {
+            compatible = "zmk,behavior-mod-morph";
+            label = "WORLD_A_RCTL";
+            #binding-cells = <0>;
+            bindings = <&world_a_acute>, <&world_a_grave>;
+            mods = <(MOD_RSFT)>;
+        };
+
+        world_y_base: world_y_base {
+            compatible = "zmk,behavior-mod-morph";
+            label = "WORLD_Y_BASE";
+            #binding-cells = <0>;
+            bindings = <&world_y_diaeresis>, <&world_y_acute>;
+            mods = <(MOD_RCTL)>;
+        };
+
+        world_o_base: world_o_base {
+            compatible = "zmk,behavior-mod-morph";
+            label = "WORLD_O_BASE";
+            #binding-cells = <0>;
+            bindings = <&world_o_diaeresis>, <&world_o_LALT>;
+            mods = <(MOD_LALT|MOD_RALT|MOD_LCTL|MOD_RCTL|MOD_RSFT)>;
+        };
+
+        world_o_LALT: world_o_LALT {
+            compatible = "zmk,behavior-mod-morph";
+            label = "WORLD_O_LALT";
+            #binding-cells = <0>;
+            bindings = <&world_o_tilde>, <&world_o_RALT>;
+            mods = <(MOD_RALT|MOD_LCTL|MOD_RCTL|MOD_RSFT)>;
+        };
+
+        world_o_RALT: world_o_RALT {
+            compatible = "zmk,behavior-mod-morph";
+            label = "WORLD_O_RALT";
+            #binding-cells = <0>;
+            bindings = <&world_o_circumflex>, <&world_o_LCTL>;
+            mods = <(MOD_LCTL|MOD_RCTL|MOD_RSFT)>;
+        };
+
+        world_o_LCTL: world_o_LCTL {
+            compatible = "zmk,behavior-mod-morph";
+            label = "WORLD_O_LCTL";
+            #binding-cells = <0>;
+            bindings = <&world_o_slash>, <&world_o_RCTL>;
+            mods = <(MOD_RCTL|MOD_RSFT)>;
+        };
+
+        world_o_RCTL: world_o_RCTL {
+            compatible = "zmk,behavior-mod-morph";
+            label = "WORLD_O_RCTL";
+            #binding-cells = <0>;
+            bindings = <&world_o_acute>, <&world_o_grave>;
+            mods = <(MOD_RSFT)>;
+        };
+
+        world_u_base: world_u_base {
+            compatible = "zmk,behavior-mod-morph";
+            label = "WORLD_U_BASE";
+            #binding-cells = <0>;
+            bindings = <&world_u_diaeresis>, <&world_u_RALT>;
+            mods = <(MOD_RALT|MOD_RCTL|MOD_RSFT)>;
+        };
+
+        world_u_RALT: world_u_RALT {
+            compatible = "zmk,behavior-mod-morph";
+            label = "WORLD_U_RALT";
+            #binding-cells = <0>;
+            bindings = <&world_u_circumflex>, <&world_u_RCTL>;
+            mods = <(MOD_RCTL|MOD_RSFT)>;
+        };
+
+        world_u_RCTL: world_u_RCTL {
+            compatible = "zmk,behavior-mod-morph";
+            label = "WORLD_U_RCTL";
+            #binding-cells = <0>;
+            bindings = <&world_u_acute>, <&world_u_grave>;
+            mods = <(MOD_RSFT)>;
+        };
+
+        world_quotes_base: world_quotes_base {
+            compatible = "zmk,behavior-mod-morph";
+            label = "WORLD_QUOTES_BASE";
+            #binding-cells = <0>;
+            bindings = <&world_quotes_plain>, <&world_quotes_LALT>;
+            mods = <(MOD_LALT|MOD_LCTL|MOD_RCTL|MOD_RSFT)>;
+        };
+
+        world_quotes_LALT: world_quotes_LALT {
+            compatible = "zmk,behavior-mod-morph";
+            label = "WORLD_QUOTES_LALT";
+            #binding-cells = <0>;
+            bindings = <&world_quotes_angle>, <&world_quotes_LCTL>;
+            mods = <(MOD_LCTL|MOD_RCTL|MOD_RSFT)>;
+        };
+
+        world_quotes_LCTL: world_quotes_LCTL {
+            compatible = "zmk,behavior-mod-morph";
+            label = "WORLD_QUOTES_LCTL";
+            #binding-cells = <0>;
+            bindings = <&world_quotes_curly2>, <&world_quotes_RCTL>;
+            mods = <(MOD_RCTL|MOD_RSFT)>;
+        };
+
+        world_quotes_RCTL: world_quotes_RCTL {
+            compatible = "zmk,behavior-mod-morph";
+            label = "WORLD_QUOTES_RCTL";
+            #binding-cells = <0>;
+            bindings = <&world_quotes_curly1>, <&world_quotes_grave>;
+            mods = <(MOD_RSFT)>;
+        };
