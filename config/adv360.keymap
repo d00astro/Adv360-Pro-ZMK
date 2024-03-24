@@ -5,37 +5,30 @@
 / {
 behaviors {
 
-    #include "behaviors_definitions.dtsi"
-    #include "behaviors_key_positions.dtsi"
-    #include "behaviors_engrammer.dtsi"
+    // Home Row Mods and Thumb Cluster Mods
+    #include "behaviors_home_row_mods.dtsi"
+    // Custom "Shifted" behaviors (E.g. Shift + `/` becomes `\`, instead of `?`)
+    #include "behaviors_mod_morph_shifted_pairs.dtsi"
+    // Overrides for the global ZMK behaviors
+    #include "behaviors_global_overrides.dtsi"
+    // Word selection and navigation
     #include "macros_words.dtsi"
+    // Emoji and Unicode
     #include "macros_world.dtsi"
+    // Mouse and cursor movement
     #include "macros_emoji.dtsi"
-
-    // // Remove 
-    // #include "macros.dtsi"
-    // #include "version.dtsi"
-    // hm: homerow_mods {
-    //     compatible = "zmk,behavior-hold-tap";
-    //     label = "HOMEROW_MODS";
-    //     #binding-cells = <2>;
-    //     tapping-term-ms = <200>;
-    //     quick_tap_ms = <175>;
-    //     flavor = "tap-preferred";
-    //     bindings = <&kp>, <&kp>;
-    // };
 };
 
-#define LYR_DEF 0
-#define LYR_ABC 0
-#define LYR_NAV 1
-#define LYR_SYM 2
-#define LYR_NUM 3
-#define LYR_FUN 4
-#define LYR_UNI 5
-#define LYR_GAM 6
-#define LYR_LOW 7
-#define LYR_NON 8
+#define LAY_DEF 0
+#define LAY_ABC 0
+#define LAY_NAV 1
+#define LAY_SYM 2
+#define LAY_NUM 3
+#define LAY_FUN 4
+#define LAY_UNI 5
+#define LAY_GAM 6
+#define LAY_LOW 7
+#define LAY_NON 8
 
 keymap {
     compatible = "zmk,keymap";
@@ -45,87 +38,87 @@ keymap {
     &none               &none               &custom_slash       &kp MINUS           &custom_equal       &kp ESC             &kp ESC                                                                                             &kp ESC             &kp ESC             &custom_right_paren &custom_left_paren  &custom_zero        &none               &none
     &kp GRAVE           &kp B               &homey_left RALT Y  &kp O               &kp U               &kp SEMICOLON       &none                                                                                               &none               &kp SINGLE_QUOTE    &kp L               &kp D               &homey_right RALT W &kp V               &kp Z
     &cappy              &homey_left LGUI C  &homey_left LALT I  &homey_left LCTRL E &shift_left LSHFT A &custom_period      &none               &none               &none               &none               &none               &none               &custom_comma     &shift_right LSHFT H &homey_right LCTRL T &homey_right LALT S &homey_right LGUI N &kp Q
-    &none               &kp G               &kp X               &kp J               &kp K               &sl LYR_LOW                                                 &none               &none                                                       &sl LYR_LOW         &kp R               &kp M               &kp F               &kp P               &none
-    &none               &none               &none               &none               &none                                   &thumb LYR_NAV RET  &thumb LYR_SYM TAB  &none               &none               &thumbtaphold LSHFT BSPC    &space LYR_NUM SPC              &none               &none               &none               &none               &none
+    &none               &kp G               &kp X               &kp J               &kp K               &sl LAY_LOW                                                 &none               &none                                                       &sl LAY_LOW         &kp R               &kp M               &kp F               &kp P               &none
+    &none               &none               &none               &none               &none                                   &thumb LAY_NAV RET  &thumb LAY_SYM TAB  &none               &none               &thumbtaphold LSHFT BSPC    &space LAY_NUM SPC              &none               &none               &none               &none               &none
             >;
         };
 
         layer_Navigation {
             bindings = <
-    &none               &none               &none               &none               &none               &none               &to LYR_ABC                                                                                         &to LYR_ABC         &none               &kp LS(LC(G))       &kp LC(F)           &kp LC(G)           &none               &none
+    &none               &none               &none               &none               &none               &none               &to LAY_ABC                                                                                         &to LAY_ABC         &none               &kp LS(LC(G))       &kp LC(F)           &kp LC(G)           &none               &none
     &none               &none               &none               &none               &kp SPACE           &none               &none                                                                                               &none               &kp LC(C)           &kp HOME            &kp PG_UP           &kp PG_DN           &kp END             &kp LC(X)
     &none               &kp LEFT_GUI        &kp LEFT_ALT        &kp LCTRL           &kp LEFT_SHIFT      &none               &none               &none               &none               &none              &none                &none               &kp LC(V)           &kp LEFT            &kp UP              &kp DOWN            &kp RIGHT           &kp INSERT
-    &none               &kp BACKSPACE       &kp DELETE          &none               &none               &sl LYR_LOW                                                 &none               &none                                                       &sl LYR_LOW         &kp LC(Z)           &kp LC(Y)           &kp DELETE          &kp BACKSPACE       &none
+    &none               &kp BACKSPACE       &kp DELETE          &none               &none               &sl LAY_LOW                                                 &none               &none                                                       &sl LAY_LOW         &kp LC(Z)           &kp LC(Y)           &kp DELETE          &kp BACKSPACE       &none
     &none               &none               &none               &none               &none                                   &none               &none               &none               &none              &extend_word         &select_word                            &none               &none               &none               &none               &none
             >;
         };
 
         layer_Symbol {
             bindings = <
-    &none               &none               &none               &none               &none               &none               &to LYR_ABC                                                                                         &to LYR_ABC         &none               &kp RIGHT_BRACKET   &kp LEFT_BRACKET    &kp PERCENT         &none               &none
+    &none               &none               &none               &none               &none               &none               &to LAY_ABC                                                                                         &to LAY_ABC         &none               &kp RIGHT_BRACKET   &kp LEFT_BRACKET    &kp PERCENT         &none               &none
     &none               &none               &none               &none               &kp SPACE           &none               &none                                                                                               &none               &kp HASH            &kp GRAVE           &kp APOSTROPHE      &kp DOUBLE_QUOTES   &kp AMPERSAND       &kp TILDE
     &none               &kp LEFT_GUI        &kp LEFT_ALT        &kp LEFT_CONTROL    &kp LEFT_SHIFT      &none               &none               &none               &none               &none               &none               &none               &kp ASTERISK        &kp DOLLAR          &kp UNDERSCORE      &kp EQUAL           &kp CARET           &kp AT_SIGN
-    &none               &kp BACKSPACE       &kp DELETE          &none               &none               &sl LYR_LOW                                                 &none               &none                                                       &sl LYR_LOW         &kp GREATER_THAN    &kp MINUS           &kp PIPE            &kp LESS_THAN       &none
-    &none               &none               &none               &none               &none                                   &none               &none               &none               &none               &custom_slash       &thumb LYR_UNI                          &none               &none               &none               &none               &none
+    &none               &kp BACKSPACE       &kp DELETE          &none               &none               &sl LAY_LOW                                                 &none               &none                                                       &sl LAY_LOW         &kp GREATER_THAN    &kp MINUS           &kp PIPE            &kp LESS_THAN       &none
+    &none               &none               &none               &none               &none                                   &none               &none               &none               &none               &custom_slash       &thumb LAY_UNI                          &none               &none               &none               &none               &none
             >;
         };
 
         layer_Number {
             bindings = <
-    &none               &none               &custom_slash       &kp MINUS           &custom_equal       &none               &to LYR_ABC                                                                                         &to LYR_ABC         &none               &none               &none               &none               &none               &none
+    &none               &none               &custom_slash       &kp MINUS           &custom_equal       &none               &to LAY_ABC                                                                                         &to LAY_ABC         &none               &none               &none               &none               &none               &none
     &custom_grave       &custom_plus        &num_7              &num_8              &num_9              &kp SEMI            &none                                                                                               &none               &none               &kp SPACE           &none               &none               &none               &none
     &none               &custom_asterisk    &num_4              &num_5              &num_6              &kp PERIOD          &none               &none               &none               &none               &none               &none               &none               &kp LEFT_SHIFT      &kp LCTRL           &kp LEFT_ALT        &kp LEFT_GUI        &none
-    &none               &kp BACKSPACE       &num_1              &num_2              &num_3              &sl LYR_LOW                                                 &none               &none                                                       &sl LYR_LOW         &mo LYR_FUN         &none               &kp DELETE          &kp BACKSPACE       &none
-    &none               &none               &none               &none               &none                                   &thumb LYR_NAV RET  &th LSHFT N0        &none               &none               &none               &none                                   &none               &none               &none               &none               &none
+    &none               &kp BACKSPACE       &num_1              &num_2              &num_3              &sl LAY_LOW                                                 &none               &none                                                       &sl LAY_LOW         &mo LAY_FUN         &none               &kp DELETE          &kp BACKSPACE       &none
+    &none               &none               &none               &none               &none                                   &thumb LAY_NAV RET  &th LSHFT N0        &none               &none               &none               &none                                   &none               &none               &none               &none               &none
             >;
         };
 
         layer_Function {
             bindings = <
-    &none               &none               &kp F10             &kp F11             &kp F12             &none               &to LYR_ABC                                                                                         &to LYR_ABC         &none               &none               &none               &none               &none               &none
+    &none               &none               &kp F10             &kp F11             &kp F12             &none               &to LAY_ABC                                                                                         &to LAY_ABC         &none               &none               &none               &none               &none               &none
     &none               &none               &kp F7              &kp F8              &kp F9              &none               &none                                                                                               &none               &none               &kp SPACE           &none               &none               &none               &none
     &none               &none               &kp F4              &kp F5              &kp F6              &none               &none               &none               &none               &none               &none               &none               &none               &kp LSHFT           &kp LCTRL           &kp LEFT_ALT        &kp LEFT_GUI        &none
-    &none               &kp BACKSPACE       &kp F1              &kp F2              &kp F3              &sl LYR_LOW                                                 &none               &none                                                       &sl LYR_LOW         &none               &none               &kp DELETE          &kp BACKSPACE       &none
+    &none               &kp BACKSPACE       &kp F1              &kp F2              &kp F3              &sl LAY_LOW                                                 &none               &none                                                       &sl LAY_LOW         &none               &none               &kp DELETE          &kp BACKSPACE       &none
     &none               &none               &none               &none               &none                                   &kp TAB             &none               &none               &none               &none               &none                                   &none               &none               &none               &none               &none
             >;
         };
 
         layer_Unicode {
             bindings = <
-    &none               &none               &emoji_heart        &emoji_tada         &emoji_rocket       &none               &to LYR_ABC                                                                                         &to LYR_ABC         &none               &none               &none               &none               &none               &none
+    &none               &none               &emoji_heart        &emoji_tada         &emoji_rocket       &none               &to LAY_ABC                                                                                         &to LAY_ABC         &none               &none               &none               &none               &none               &none
     &emoji_aubergine    &emoji_burger       &world_y_base       &world_o_base       &world_u_base       &emoji_checkoff     &none                                                                                               &none               &none               &kp SPACE           &kp RIGHT_CONTROL   &kp RALT            &none               &none
     &world_n_tilde      &world_c_cedilla    &world_i_base       &world_e_base       &world_a_base       &emoji_eyes         &none               &none               &none               &none               &none               &none               &none               &kp LSHFT           &kp LEFT_CONTROL    &kp LEFT_ALT        &kp RSHIFT          &none
-    &none               &kp BACKSPACE       &kp DELETE          &emoji_monkey       &emoji_poop         &sl LYR_LOW                                                 &none               &none                                                       &sl LYR_LOW         &none               &none               &kp DELETE          &kp BACKSPACE       &none
+    &none               &kp BACKSPACE       &kp DELETE          &emoji_monkey       &emoji_poop         &sl LAY_LOW                                                 &none               &none                                                       &sl LAY_LOW         &none               &none               &kp DELETE          &kp BACKSPACE       &none
     &none               &none               &none               &none               &none                                   &emoji_thumbs_up    &emoji_laugh        &none               &none               &none               &none                                   &none               &none               &none               &none               &none
             >;
         };
 
         layer_Gaming {
             bindings = <
-    &kp ESC             &kp NUMBER_0        &kp NUMBER_1        &kp NUMBER_2        &kp NUMBER_3        &kp NUMBER_4        &to LYR_ABC                                                                                         &to LYR_ABC         &none               &none               &none               &none               &none               &none
+    &kp ESC             &kp NUMBER_0        &kp NUMBER_1        &kp NUMBER_2        &kp NUMBER_3        &kp NUMBER_4        &to LAY_ABC                                                                                         &to LAY_ABC         &none               &none               &none               &none               &none               &none
     &kp F5              &kp TAB             &kp Q               &kp W               &kp E               &kp R               &kp T                                                                                               &none               &none               &kp SPACE           &none               &none               &none               &none
     &kp ENTER           &kp LEFT_SHIFT      &kp A               &kp S               &kp D               &kp F               &kp G               &kp I               &kp J               &none               &none               &none               &none               &kp LEFT_SHIFT      &kp LCTRL           &kp LEFT_ALT        &kp LEFT_GUI        &none
-    &kp F9              &kp LCTRL           &kp Z               &kp X               &kp C               &kp V                                                       &kp N               &none                                                       &sl LYR_LOW         &none               &none               &kp DELETE          &kp BACKSPACE       &none
+    &kp F9              &kp LCTRL           &kp Z               &kp X               &kp C               &kp V                                                       &kp N               &none                                                       &sl LAY_LOW         &none               &none               &kp DELETE          &kp BACKSPACE       &none
     &kp NUMBER_9        &kp NUMBER_8        &kp NUMBER_7        &kp NUMBER_6        &kp NUMBER_5                            &kp SPACE           &kp LEFT_ALT        &kp M               &none               &none               &none                                   &none               &none               &none               &none               &none
             >;
         };
 
         layer_lower {
             bindings = <
-    &none               &none               &none               &none               &none               &none               &to LYR_ABC                                                                                         &to LYR_ABC         &none               &none               &none               &none               &none               &none
+    &none               &none               &none               &none               &none               &none               &to LAY_ABC                                                                                         &to LAY_ABC         &none               &none               &none               &none               &none               &none
     &none               &none               &none               &none               &none               &none               &none                                                                                               &none               &none               &none               &none               &none               &none               &none
     &none               &none               &none               &none               &none               &none               &none               &tog 3              &tog 5             &tog 1               &tog 2              &none               &none               &none               &none               &none               &none               &none
-    &none               &none               &none               &none               &none               &sl LYR_LOW                                                 &tog 6             &tog 4                                                       &sl LYR_LOW         &none               &none               &none               &none               &none
-    &none               &none               &none               &none               &none                                   &tog 2              &tog 1              &tog 4             &tog 6               &tog 5              &tog 3                                  &none               &none               &none               &none               &none
+    &none               &none               &none               &none               &none               &sl LAY_LOW                                                 &tog 6             &tog 4                                                       &sl LAY_LOW         &none               &none               &none               &none               &none
+    &none               &none               &none               &none               &none                                   &tog LAY_SYM        &tog 1              &tog 4             &tog 6               &tog 5              &tog 3                                  &none               &none               &none               &none               &none
             >;
         };
 
         layer_none {
             bindings = <
-    &none               &none               &none               &none               &none               &none               &to LYR_ABC                                                                                         &to LYR_ABC         &none               &none               &none               &none               &none               &none
+    &none               &none               &none               &none               &none               &none               &to LAY_ABC                                                                                         &to LAY_ABC         &none               &none               &none               &none               &none               &none
     &none               &none               &none               &none               &none               &none               &none                                                                                               &none               &none               &none               &none               &none               &none               &none
     &none               &none               &none               &none               &none               &none               &none               &none               &none              &none                &none               &none               &none               &none               &none               &none               &none               &none
-    &none               &none               &none               &none               &none               &sl LYR_LOW                                                 &none              &none                                                        &sl LYR_LOW         &none               &none               &none               &none               &none
+    &none               &none               &none               &none               &none               &sl LAY_LOW                                                 &none              &none                                                        &sl LAY_LOW         &none               &none               &none               &none               &none
     &none               &none               &none               &none               &none                                   &none               &none               &none              &none                &none               &none                                   &none               &none               &none               &none               &none
             >;
         };
