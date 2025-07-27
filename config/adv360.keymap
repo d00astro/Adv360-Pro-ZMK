@@ -9,22 +9,31 @@
 
 / {
     behaviors {
-      #include "macros.dtsi"
-      #include "version.dtsi"
-
-      // Home Row Mods and Thumb Cluster Mods
-      #include "behaviors_home_row_mods.dtsi"
-      // Custom "Shifted" behaviors (E.g. Shift + `/` becomes `\`, instead of `?`)
-      #include "behaviors_mod_morph_shifted_pairs.dtsi"
-      // Overrides for the global ZMK behaviors
-      #include "behaviors_global_overrides.dtsi"
-      // Word selection and navigation
-      #include "macros_words.dtsi"
-      // Emoji and Unicode
-      #include "macros_world.dtsi"
-      // Mouse and cursor movement
-      #include "macros_emoji.dtsi"
+        #include "version.dtsi"
+        // Home Row Mods and Thumb Cluster Mods
+        #include "behaviors_home_row_mods.dtsi"
+        // Custom "Shifted" behaviors (E.g. Shift + `/` becomes `\`, instead of `?`)
+        #include "behaviors_mod_morph_shifted_pairs.dtsi"
+        // Overrides for the global ZMK behaviors
+        #include "behaviors_global_overrides.dtsi"
+        // General macros for common tasks
+        #include "macros.dtsi"
+        // Word selection and navigation
+        #include "macros_words.dtsi"
+        // Emoji and Unicode
+        #include "macros_world.dtsi"
+        // Mouse and cursor movement
+        #include "macros_emoji.dtsi"
+        // KVM switch and control macros
+        #include "macros_kvm.dtsi"
     };
+
+#define MAIN_MON    kvm_monitor_b
+#define SEC_MON     kvm_monitor_a
+#define SRC_1       KVM_SRC_1B
+#define SRC_2       KVM_SRC_2B
+#define SRC_3       KVM_SRC_3B
+#define SRC_4       KVM_SRC_4B
 
 
 #define LAY_DEF 0
@@ -48,11 +57,11 @@ keymap {
     &kp GRAVE           &kp B               &homey_left RALT Y  &kp O               &kp U               &kp SEMICOLON       &none                                                                                               &none               &kp SINGLE_QUOTE    &kp L               &kp D               &homey_right RALT W &kp V               &kp Z
     &cappy              &L_PINKY C          &L_RING I           &L_LONG E           &L_INDEX A          &custom_period      &none               &none               &none               &none               &mo LAY_UNI         &none               &custom_comma       &R_INDEX H          &R_LONG T           &R_RING S           &R_PINKY N          &kp Q
     &sl LAY_LOW         &kp G               &kp X               &kp J               &kp K               &none                                                       &none               &none                                                       &none               &kp R               &kp M               &kp F               &kp P               &sl LAY_LOW 
-    &none               &none               &none               &none               &none                                   &thumb LAY_NAV RET  &thumb LAY_SYM TAB  &none               &none               &thumbtaphold LSHFT BSPC    &space LAY_NUM SPC              &none               &none               &none               &none               &none
+    &none               &kvm_set N4         &kvm_set N3         &kvm_set N2         &kvm_set N1                             &thumb LAY_NAV RET  &thumb LAY_SYM TAB  &none               &none               &thumbtaphold LSHFT BSPC    &space LAY_NUM SPC              &kvm_switch         &kvm_usb            &kvm_audio          &kvm_scan           &none
             >;
         };
 
-        layer_Navigation {
+        layer_Navigation { // RIGHT HAND
             display-name = "Navigation";
             bindings = <
     &none               &none               &none               &none               &none               &none               &to LAY_ABC                                                                                         &to LAY_ABC         &none               &kp LS(LC(G))       &kp LC(F)           &kp LC(G)           &none               &none
@@ -63,7 +72,7 @@ keymap {
             >;
         };
 
-        layer_Symbol {
+        layer_Symbol {  // RIGHT HAND
             display-name = "Symbols";
             bindings = <
     &none               &none               &none               &none               &none               &none               &to LAY_ABC                                                                                         &to LAY_ABC         &none               &kp RIGHT_BRACKET   &kp LEFT_BRACKET    &kp PERCENT         &none               &none
@@ -74,18 +83,17 @@ keymap {
             >;
         };
 
-        layer_Number {
-            display-name = "Numpad";
+        layer_Number {  // LEFT HAND
             bindings = <
     &none               &none               &custom_slash       &kp MINUS           &custom_equal       &none               &to LAY_ABC                                                                                         &to LAY_ABC         &none               &none               &none               &none               &none               &none
     &custom_grave       &custom_plus        &num_7              &num_8              &num_9              &kp SEMI            &none                                                                                               &none               &none               &kp SPACE           &none               &none               &none               &none
     &none               &custom_asterisk    &num_4              &num_5              &num_6              &kp PERIOD          &none               &none               &none               &none               &none               &none               &none               &kp LEFT_SHIFT      &kp LCTRL           &kp LEFT_ALT        &kp LEFT_GUI        &none
     &sl LAY_LOW         &kp BACKSPACE       &num_1              &num_2              &num_3              &none                                                       &none               &none                                                       &none               &mo LAY_FUN         &none               &kp DELETE          &kp BACKSPACE       &sl LAY_LOW 
-    &none               &none               &none               &none               &none                                   &thumb LAY_NAV RET  &th LSHFT N0        &none               &none               &none               &none                                   &none               &none               &none               &none               &none
+    &none               &SEC_MON SRC_4      &SEC_MON SRC_3      &SEC_MON SRC_2      &SEC_MON SRC_1                          &thumb LAY_NAV RET  &th LSHFT N0        &none               &none               &none               &none                                   &none               &none               &none               &none               &none
             >;
         };
 
-        layer_Function {
+        layer_Function { // RIGHT HAND
             display-name = "Function";
             bindings = <
     &none               &none               &kp F10             &kp F11             &kp F12             &none               &to LAY_ABC                                                                                         &to LAY_ABC         &none               &none               &none               &none               &none               &none
@@ -96,18 +104,18 @@ keymap {
             >;
         };
 
-        layer_Unicode {
+        layer_Unicode { // LEFT HAND
             display-name = "Unicode";
             bindings = <
     &none               &none               &emoji_heart        &emoji_tada         &emoji_rocket       &none               &to LAY_ABC                                                                                         &to LAY_ABC         &none               &none               &none               &none               &none               &none
     &emoji_aubergine    &emoji_burger       &world_y_base       &world_o_base       &world_u_base       &emoji_checkoff     &none                                                                                               &none               &none               &kp SPACE           &kp RIGHT_CONTROL   &kp RALT            &none               &none
     &world_n_tilde      &world_c_cedilla    &world_i_base       &world_e_base       &world_a_base       &emoji_eyes         &none               &none               &none               &none               &none               &none               &none               &kp LSHFT           &kp LEFT_CONTROL    &kp LEFT_ALT        &kp RSHIFT          &none
     &sl LAY_LOW         &kp BACKSPACE       &kp DELETE          &emoji_monkey       &emoji_poop         &none                                                       &none               &none                                                       &none               &none               &none               &kp DELETE          &kp BACKSPACE       &sl LAY_LOW 
-    &none               &none               &none               &none               &none                                   &emoji_thumbs_up    &emoji_laugh        &none               &none               &none               &none                                   &none               &none               &none               &none               &none
-            >;
+    &none               &MAIN_MON SRC_4     &MAIN_MON SRC_3     &MAIN_MON SRC_2     &MAIN_MON SRC_1                         &emoji_thumbs_up    &emoji_laugh        &none               &none               &none               &none                                   &none               &none               &none               &none               &none
+            >; 
         };
 
-        layer_Gaming {
+        layer_Gaming {  // LEFT HAND
             display-name = "Gaming";
             bindings = <
     &kp ESC             &kp NUMBER_0        &kp NUMBER_1        &kp NUMBER_2        &kp NUMBER_3        &kp NUMBER_4        &to LAY_ABC                                                                                         &to LAY_ABC         &none               &none               &none               &none               &none               &none
@@ -123,9 +131,9 @@ keymap {
             bindings = <
     &none               &none               &none               &none               &none               &none               &to LAY_ABC                                                                                         &to LAY_ABC         &none               &none               &none               &none               &none               &none
     &none               &none               &none               &none               &none               &none               &none                                                                                               &none               &none               &none               &none               &none               &none               &none
-    &none               &none               &none               &none               &none               &none               &none               &tog 3              &tog 5             &tog 1               &tog 2              &none               &none               &none               &none               &none               &none               &none
-    &none               &none               &none               &none               &none               &none                                                       &tog 6             &tog 4                                                       &none               &none               &none               &none               &none               &none
-    &none               &none               &none               &none               &none                                   &tog LAY_SYM        &tog 1              &tog 4             &tog 6               &tog 5              &tog 3                                  &none               &none               &none               &none               &none
+    &none               &none               &none               &none               &none               &none               &none               &tog LAY_NUM        &tog LAY_UNI       &tog LAY_NAV         &tog LAY_SYM        &none               &none               &none               &none               &none               &none               &none
+    &none               &none               &none               &none               &none               &none                                                       &tog LAY_GAM       &tog LAY_FUN                                                 &none               &none               &none               &none               &none               &none
+    &none               &none               &none               &none               &none                                   &tog LAY_SYM        &tog LAY_NAV        &tog LAY_FUN       &tog LAY_GAM         &tog LAY_UNI        &tog LAY_NUM                            &none               &none               &none               &none               &none
             >;
         };
 

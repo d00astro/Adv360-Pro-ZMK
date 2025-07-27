@@ -1,0 +1,162 @@
+// KVM keyboard hot-keys for TESMart HCK402-P23 (and others)
+#define KVM_HOTKEY  RCTRL
+#define KVM_WAIT_MS 50
+#define KVM_TAP_MS  20
+#define KVM_SRC_1A  N1
+#define KVM_SRC_1B  N2
+#define KVM_SRC_2A  N3
+#define KVM_SRC_2B  N4
+#define KVM_SRC_3A  N5
+#define KVM_SRC_3B  N6
+#define KVM_SRC_4A  N7
+#define KVM_SRC_4B  N8
+
+  // Select previous input port
+  kvm_next: kvm_next {
+    compatible = "zmk,behavior-macro";
+    label = "KVM_NEXT";
+    wait-ms = <KVM_WAIT_MS>;
+    tap-ms = <KVM_TAP_MS>;
+    #binding-cells = <0>;
+    bindings = <&kp KVM_HOTKEY>, <&kp KVM_HOTKEY>, <&kp PG_DN>;
+  };
+
+  // Select next input port
+  kvm_prev: kvm_prev {
+    compatible = "zmk,behavior-macro";
+    label = "KVM_PREV";
+    wait-ms = <KVM_WAIT_MS>;
+    tap-ms = <KVM_TAP_MS>;
+    #binding-cells = <0>;
+    bindings = <&kp KVM_HOTKEY>, <&kp KVM_HOTKEY>, <&kp PG_UP>;
+  };
+
+  // Select port by number
+  kvm_set: kvm_set {
+    compatible = "zmk,behavior-macro-one-param";
+    label = "KVM_SET";
+    wait-ms = <KVM_WAIT_MS>;
+    tap-ms = <KVM_TAP_MS>;
+    #binding-cells = <1>;
+    bindings = <&kp KVM_HOTKEY>, <&kp KVM_HOTKEY>, <&macro_param_1to1>, <&kp MACRO_PLACEHOLDER>;
+  };
+
+  // Switch source for only Monitor A
+  kvm_monitor_a: kvm_monitor_a {
+    compatible = "zmk,behavior-macro-one-param";
+    label = "KVM_MONITOR_A";
+    wait-ms = <KVM_WAIT_MS>;
+    tap-ms = <KVM_TAP_MS>;
+    #binding-cells = <1>;
+    bindings = <&kp KVM_HOTKEY>, <&kp KVM_HOTKEY>, <&kp LEFT>, <&macro_param_1to1>, <&kp MACRO_PLACEHOLDER>;
+  };
+
+  // Switch source for only Monitor B
+  kvm_monitor_b: kvm_monitor_b {
+    compatible = "zmk,behavior-macro-one-param";
+    label = "KVM_MONITOR_B";
+    #binding-cells = <1>;
+    wait-ms = <KVM_WAIT_MS>;
+    tap-ms = <KVM_TAP_MS>;
+    bindings = <&kp KVM_HOTKEY>, <&kp KVM_HOTKEY>, <&kp RIGHT>, <&macro_param_1to1>, <&kp MACRO_PLACEHOLDER>;
+  };
+
+  // Switch focus in display mode 2
+  kvm_switch: kvm_switch {
+    compatible = "zmk,behavior-macro";
+    label = "KVM_SWITCH";
+    wait-ms = <KVM_WAIT_MS>;
+    tap-ms = <KVM_TAP_MS>;
+    #binding-cells = <0>;
+    bindings = <&kp RALT>, <&kp RALT>;
+  };
+
+  // Switch USB 3.0 device connected to the KVM between the 4 PCs on display mode 2
+  kvm_usb: kvm_usb {
+    compatible = "zmk,behavior-macro";
+    label = "KVM_USB";
+    wait-ms = <KVM_WAIT_MS>;
+    tap-ms = <KVM_TAP_MS>;
+    #binding-cells = <0>;
+    bindings = <&kp KVM_HOTKEY>, <&kp KVM_HOTKEY>, <&kp UP>;
+  };
+
+  // Switch audio focus between the 4 PCs on display mode 2
+  kvm_audio: kvm_audio {
+    compatible = "zmk,behavior-macro";
+    label = "KVM_AUDIO";
+    wait-ms = <KVM_WAIT_MS>;
+    tap-ms = <KVM_TAP_MS>;
+    #binding-cells = <0>;
+    bindings = <&kp KVM_HOTKEY>, <&kp KVM_HOTKEY>, <&kp DOWN>;
+  };
+
+  // Turn on/off HDP retention mode
+  kvm_hdp: kvm_hdp {
+    compatible = "zmk,behavior-macro";
+    label = "KVM_HDP";
+    wait-ms = <KVM_WAIT_MS>;
+    tap-ms = <KVM_TAP_MS>;
+    #binding-cells = <0>;
+    bindings = <&kp KVM_HOTKEY>, <&kp KVM_HOTKEY>, <&kp F4>;
+  };
+
+  // Turn on/off mouse wheel switching mode
+  kvm_mwheel: kvm_mwheel {
+    compatible = "zmk,behavior-macro";
+    label = "KVM_MWHEEL";
+    wait-ms = <KVM_WAIT_MS>;
+    tap-ms = <KVM_TAP_MS>;
+    #binding-cells = <0>;
+    bindings = <&kp KVM_HOTKEY>, <&kp KVM_HOTKEY>, <&kp F6>;
+  };
+
+  // Disable or enable buzzer sound
+  kvm_buzz: kvm_buzz {
+    compatible = "zmk,behavior-macro";
+    label = "KVM_BUZZ";
+    wait-ms = <KVM_WAIT_MS>;
+    tap-ms = <KVM_TAP_MS>;
+    #binding-cells = <0>;
+    bindings = <&kp KVM_HOTKEY>, <&kp KVM_HOTKEY>, <&kp F11>;
+  };
+
+  // Auto-scan (while pressed)
+  kvm_scan: kvm_scan {
+    compatible = "zmk,behavior-macro";
+    label = "KVM_SCAN";
+    wait-ms = <KVM_WAIT_MS>;
+    tap-ms = <KVM_TAP_MS>;
+    #binding-cells = <0>;
+    bindings = <&kp KVM_HOTKEY>, <&kp KVM_HOTKEY>, <&kp SPACE>, <&macro_pause_for_release>, <&kp ESC>;
+  };
+
+  // Increase the frequency of auto scan
+  kvm_scan_freq_incr: kvm_scan_freq_incr {
+    compatible = "zmk,behavior-macro";
+    label = "KVM_SCAN_FREQ_INCR";
+    wait-ms = <KVM_WAIT_MS>;
+    tap-ms = <KVM_TAP_MS>;
+    #binding-cells = <0>;
+    bindings = <&kp KVM_HOTKEY>, <&kp KVM_HOTKEY>, <&kp PLUS>;
+  };
+
+  // Decrease the frequency of auto scan
+  kvm_scan_freq_decr: kvm_scan_freq_decr {
+    compatible = "zmk,behavior-macro";
+    label = "KVM_SCAN_FREQ_DECR";
+    wait-ms = <KVM_WAIT_MS>;
+    tap-ms = <KVM_TAP_MS>;
+    #binding-cells = <0>;
+    bindings = <&kp KVM_HOTKEY>, <&kp KVM_HOTKEY>, <&kp MINUS>;
+  };
+
+  // Rotate hot-key until it is back at Left CTRL
+  kvm_hotkey: kvm_hotkey {
+    compatible = "zmk,behavior-macro";
+    label = "KVM_HOTKEY";
+    wait-ms = <KVM_WAIT_MS>;
+    tap-ms = <KVM_TAP_MS>;
+    #binding-cells = <0>;
+    bindings = <&kp SLCK>, <&kp SLCK>, <&kp F1>, <&kp LCTRL>, <&kp LCTRL>, <&kp F1>;
+  };
