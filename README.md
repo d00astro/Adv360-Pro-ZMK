@@ -69,6 +69,42 @@ The built docker container and compiled firmware files can be deleted with `make
 
 Creating the docker container takes some time. Therefore `make clean_firmware` can be used to only clean firmware without removing the docker container. Similarly `make clean_image` can be used to remove the docker container without removing compiled firmware files.
 
+## Flashing CI-built firmware (devenv)
+
+Instead of building locally, the `flash` command downloads the firmware artifact
+that GitHub Actions already built for this branch (via [nightly.link](https://nightly.link),
+no token needed) and walks you through flashing both halves over USB.
+
+### Setup
+
+* [Nix](https://nixos.org) with [devenv](https://devenv.sh/getting-started/) installed.
+* Optionally [direnv](https://direnv.net): run `direnv allow` once and the shell
+  activates automatically on `cd`.
+
+### Usage
+
+```shell
+devenv shell                  # or rely on direnv
+flash                         # fetch the latest firmware-no-clique artifact for the current branch, then flash
+flash --clique                # fetch the ZMK Studio (clique) artifact instead
+flash path/to/firmware.zip    # flash a manually downloaded artifact zip
+flash --fetch-only            # download + verify only; files land in firmware/
+```
+
+`flash` verifies the images (UF2 magic), warns when the artifact was built from a
+different commit than local HEAD (e.g. CI has not finished for your latest push),
+then prompts you to put the **left** half into bootloader mode, waits for the
+`ADV360PRO` drive, copies the `.uf2` (mounting via `sudo` if nothing auto-mounts
+it), and repeats for the **right** half. It refuses to continue until the previous
+half's drive has disappeared, so the wrong firmware can never land on a
+still-attached half.
+
+If the current firmware is broken and keypresses do nothing, enter the bootloader
+with the physical reset button: double-click the small button in the center of the
+thumb cluster.
+
+See `flash --help` for `--branch`, `--left-only` / `--right-only`, `--timeout`.
+
 ## Flashing firmware
 
 Follow the programming instruction on page 8 of the [Quick Start Guide](https://kinesis-ergo.com/wp-content/uploads/Advantage360-Professional-QSG-v8-25-22.pdf) to flash the firmware.
