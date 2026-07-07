@@ -37,7 +37,7 @@
     label = "KVM_SET";
     wait-ms = <KVM_WAIT_MS>;
     tap-ms = <KVM_TAP_MS>;
-    #binding-cells = <1>122;
+    #binding-cells = <1>;
     bindings = <&kp KVM_HOTKEY>, <&kp KVM_HOTKEY>, <&macro_param_1to1>, <&kp MACRO_PLACEHOLDER>;
   };
 
