@@ -1,9 +1,0 @@
-inputs:
-  nixpkgs:
-    url: github:cachix/devenv-nixpkgs/rolling
-  # Pinned older nixpkgs solely for CMake 3.x:
-  # Zephyr 3.5 is incompatible with CMake 4 (current nixpkgs ships 4.1.x).
-  nixpkgs-cmake3:
-    url: github:NixOS/nixpkgs/nixos-24.11
-  zephyr-nix:
-    url: github:nix-community/zephyr-nix

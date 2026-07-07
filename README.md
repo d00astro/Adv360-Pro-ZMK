@@ -69,43 +69,6 @@ The built docker container and compiled firmware files can be deleted with `make
 
 Creating the docker container takes some time. Therefore `make clean_firmware` can be used to only clean firmware without removing the docker container. Similarly `make clean_image` can be used to remove the docker container without removing compiled firmware files.
 
-## Building with devenv (Nix)
-
-A container-free alternative to the Docker/Podman build above, using [devenv](https://devenv.sh) to provide a native Zephyr toolchain (Zephyr SDK 0.16, west, CMake 3.x, etc.).
-
-### Setup
-
-* [Nix](https://nixos.org) with flakes enabled and [devenv](https://devenv.sh/getting-started/) installed.
-* Optionally [direnv](https://direnv.net): run `direnv allow` once and the environment activates automatically on `cd`.
-
-### Quick start
-
-```shell
-devenv shell   # first run downloads the pinned toolchain
-init-west      # first time only: fetches ZMK + Zephyr sources (~1 GB)
-build          # builds both halves
-```
-
-Firmware lands in `firmware/<timestamp>-<commit>-{left,right}-clique.uf2` (raw west outputs stay in `build/{left,right}/zephyr/zmk.uf2`).
-
-### Commands
-
-| Command | Description |
-|---|---|
-| `init-west` | One-time west workspace setup (idempotent) |
-| `update-deps` | Re-fetch ZMK/Zephyr — `config/west.yml` pins a *moving* branch, so run this to pick up upstream firmware changes |
-| `build` | Build both halves into `firmware/` |
-| `build-left` / `build-right` | Build a single half |
-| `flash` | Build, then interactively flash both halves over USB (`flash --help` for `--no-build`, `--left-only`, `--right-only`) |
-
-The `flash` command walks you through the whole procedure: it prompts you to plug in the **left** half and put it into bootloader mode, waits for the `ADV360PRO` drive to appear, copies the `.uf2` (mounting via `sudo` if nothing auto-mounts it), then repeats for the **right** half. It refuses to continue until the previous half's drive has disappeared, so the wrong firmware can never land on a still-attached half.
-
-### Notes
-
-* `devenv.lock` (committed) pins the toolchain exactly; the ZMK/Zephyr *sources* are intentionally not locked (moving branch `refil/zmk@adv360-z3.5-2`) — two builds on different days may differ until you compare `west list` output.
-* The west workspace (`.west/`, `zmk/`, `zephyr/`, `modules/`, …) and `build/` live gitignored in the repo root; `git clean -xdff` removes them.
-* The container build (`make`) continues to work unchanged and produces the same firmware.
-
 ## Flashing firmware
 
 Follow the programming instruction on page 8 of the [Quick Start Guide](https://kinesis-ergo.com/wp-content/uploads/Advantage360-Professional-QSG-v8-25-22.pdf) to flash the firmware.
