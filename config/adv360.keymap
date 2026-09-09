@@ -28,12 +28,9 @@
         #include "macros_kvm.dtsi"
     };
 
-#define MAIN_MON    kvm_monitor_b
-#define SEC_MON     kvm_monitor_a
-#define SRC_1       KVM_SRC_1B
-#define SRC_2       KVM_SRC_2B
-#define SRC_3       KVM_SRC_3B
-#define SRC_4       KVM_SRC_4B
+#define CONTROL     KVM_SET_MIRROR_A
+#define PRI_MON     KVM_MONITOR_A
+#define SEC_MON     KVM_MONITOR_B
 
 
 #define LAY_DEF 0
@@ -57,7 +54,7 @@ keymap {
     &kp GRAVE           &kp B               &homey_left RALT Y  &kp O               &kp U               &kp SEMICOLON       &none                                                                                               &none               &kp SINGLE_QUOTE    &kp L               &kp D               &homey_right RALT W &kp V               &kp Z
     &cappy              &L_PINKY C          &L_RING I           &L_LONG E           &L_INDEX A          &custom_period      &none               &none               &none               &none               &mo LAY_UNI         &none               &custom_comma       &R_INDEX H          &R_LONG T           &R_RING S           &R_PINKY N          &kp Q
     &sl LAY_LOW         &kp G               &kp X               &kp J               &kp K               &none                                                       &none               &none                                                       &none               &kp R               &kp M               &kp F               &kp P               &sl LAY_LOW 
-    &kvm_usb            &kvm_set N4         &kvm_set N3         &kvm_set N2         &kvm_set N1                             &thumb LAY_NAV RET  &thumb LAY_SYM TAB  &kvm_switch         &none               &thumbtaphold LSHFT BSPC    &space LAY_NUM SPC              &SEC_MON SRC_1      &SEC_MON SRC_2      &SEC_MON SRC_3      &SEC_MON SRC_4      &kvm_audio
+    &kvm_usb            CONTROL(KVM_COMP_4) CONTROL(KVM_COMP_3) CONTROL(KVM_COMP_2) CONTROL(KVM_COMP_1)                     &thumb LAY_NAV RET  &thumb LAY_SYM TAB  &kvm_switch         &none               &thumbtaphold LSHFT BSPC    &space LAY_NUM SPC              SEC_MON(KVM_INP_1A) SEC_MON(KVM_INP_2A) SEC_MON(KVM_INP_3A) SEC_MON(KVM_INP_4A) &kvm_audio
             >;
         };
 
@@ -89,7 +86,7 @@ keymap {
     &custom_grave       &custom_plus        &num_7              &num_8              &num_9              &kp SEMI            &none                                                                                               &none               &none               &kp SPACE           &none               &none               &none               &none
     &none               &custom_asterisk    &num_4              &num_5              &num_6              &kp PERIOD          &none               &none               &none               &none               &none               &none               &none               &kp LEFT_SHIFT      &kp LCTRL           &kp LEFT_ALT        &kp LEFT_GUI        &none
     &sl LAY_LOW         &kp BACKSPACE       &num_1              &num_2              &num_3              &none                                                       &none               &none                                                       &none               &mo LAY_FUN         &none               &kp DELETE          &kp BACKSPACE       &sl LAY_LOW 
-    &none               &SEC_MON SRC_4      &SEC_MON SRC_3      &SEC_MON SRC_2      &SEC_MON SRC_1                          &thumb LAY_NAV RET  &th LSHFT N0        &none               &none               &none               &none                                   &none               &none               &none               &none               &none
+    &none               PRI_MON(KVM_INP_1A) PRI_MON(KVM_INP_2A) PRI_MON(KVM_INP_3A) PRI_MON(KVM_INP_4A)            &thumb LAY_NAV RET  &th LSHFT N0        &none               &none               &none               &none                                   &none               &none               &none               &none               &none
             >;
         };
 
@@ -111,7 +108,7 @@ keymap {
     &emoji_aubergine    &emoji_burger       &world_y_base       &world_o_base       &world_u_base       &emoji_checkoff     &none                                                                                               &none               &none               &kp SPACE           &kp RIGHT_CONTROL   &kp RALT            &none               &none
     &world_n_tilde      &world_c_cedilla    &world_i_base       &world_e_base       &world_a_base       &emoji_eyes         &none               &none               &none               &none               &none               &none               &none               &kp LSHFT           &kp LEFT_CONTROL    &kp LEFT_ALT        &kp RSHIFT          &none
     &sl LAY_LOW         &kp BACKSPACE       &kp DELETE          &emoji_monkey       &emoji_poop         &none                                                       &none               &none                                                       &none               &none               &none               &kp DELETE          &kp BACKSPACE       &sl LAY_LOW 
-    &none               &MAIN_MON SRC_4     &MAIN_MON SRC_3     &MAIN_MON SRC_2     &MAIN_MON SRC_1                         &emoji_thumbs_up    &emoji_laugh        &none               &none               &none               &none                                   &none               &none               &none               &none               &none
+    &none               &none               &none               &none               &none                                   &emoji_thumbs_up    &emoji_laugh        &none               &none               &none               &none                                   &none               &none               &none               &none               &none
             >; 
         };
 

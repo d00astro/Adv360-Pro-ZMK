@@ -1,15 +1,42 @@
 // KVM keyboard hot-keys for TESMart HCK402-P23 (and others)
-#define KVM_HOTKEY  RCTRL
-#define KVM_WAIT_MS 50
-#define KVM_TAP_MS  20
-#define KVM_SRC_1A  N1
-#define KVM_SRC_1B  N2
-#define KVM_SRC_2A  N3
-#define KVM_SRC_2B  N4
-#define KVM_SRC_3A  N5
-#define KVM_SRC_3B  N6
-#define KVM_SRC_4A  N7
-#define KVM_SRC_4B  N8
+#define KVM_HOTKEY    RCTRL
+#define KVM_WAIT_MS   50
+#define KVM_TAP_MS    20
+// Pause between two consecutive hot-key sequences, so the KVM can act on the first one
+#define KVM_SETTLE_MS 200
+
+// Computers (KVM ports) 1-4
+#define KVM_COMP_1  1
+#define KVM_COMP_2  2
+#define KVM_COMP_3  3
+#define KVM_COMP_4  4
+
+// Video inputs 1-8. Each computer has two: A is 2c-1, B is 2c.
+#define KVM_INP_A(comp) (2 * (comp) - 1)
+#define KVM_INP_B(comp) (2 * (comp))
+
+#define KVM_INP_1A  KVM_INP_A(KVM_COMP_1)  // 1
+#define KVM_INP_1B  KVM_INP_B(KVM_COMP_1)  // 2
+#define KVM_INP_2A  KVM_INP_A(KVM_COMP_2)  // 3
+#define KVM_INP_2B  KVM_INP_B(KVM_COMP_2)  // 4
+#define KVM_INP_3A  KVM_INP_A(KVM_COMP_3)  // 5
+#define KVM_INP_3B  KVM_INP_B(KVM_COMP_3)  // 6
+#define KVM_INP_4A  KVM_INP_A(KVM_COMP_4)  // 7
+#define KVM_INP_4B  KVM_INP_B(KVM_COMP_4)  // 8
+
+// The KVM selects computers and inputs with the number keys N1-N8.
+// ZMK macros cannot do arithmetic at run time (macro_param_* only copies a
+// parameter verbatim), so the integer -> key mapping is done here at compile
+// time by the C preprocessor: N1..N8 are consecutive HID usages, so the key
+// for number n is N1 + (n - 1).
+#define KVM_KEY(n)  (N1 + (n) - 1)
+
+// Keymap-facing bindings, taking integers. Use these in the keymap rather than
+// the &kvm_* macro nodes below, which take the already mapped keys.
+#define KVM_SET(comp)           &kvm_set          KVM_KEY(comp)
+#define KVM_MONITOR_A(inp)      &kvm_monitor_a    KVM_KEY(inp)
+#define KVM_MONITOR_B(inp)      &kvm_monitor_b    KVM_KEY(inp)
+#define KVM_SET_MIRROR_A(comp)  &kvm_set_mirror_a KVM_KEY(comp) KVM_KEY(KVM_INP_A(comp))
 
   // Select previous input port
   kvm_next: kvm_next {
@@ -31,7 +58,7 @@
     bindings = <&kp KVM_HOTKEY>, <&kp KVM_HOTKEY>, <&kp PG_UP>;
   };
 
-  // Select port by number
+  // Select computer by number. Param: the key for the computer, see KVM_SET(comp)
   kvm_set: kvm_set {
     compatible = "zmk,behavior-macro-one-param";
     label = "KVM_SET";
@@ -41,7 +68,7 @@
     bindings = <&kp KVM_HOTKEY>, <&kp KVM_HOTKEY>, <&macro_param_1to1>, <&kp MACRO_PLACEHOLDER>;
   };
 
-  // Switch source for only Monitor A
+  // Switch source for only Monitor A. Param: the key for the input, see KVM_MONITOR_A(inp)
   kvm_monitor_a: kvm_monitor_a {
     compatible = "zmk,behavior-macro-one-param";
     label = "KVM_MONITOR_A";
@@ -51,7 +78,7 @@
     bindings = <&kp KVM_HOTKEY>, <&kp KVM_HOTKEY>, <&kp LEFT>, <&macro_param_1to1>, <&kp MACRO_PLACEHOLDER>;
   };
 
-  // Switch source for only Monitor B
+  // Switch source for only Monitor B. Param: the key for the input, see KVM_MONITOR_B(inp)
   kvm_monitor_b: kvm_monitor_b {
     compatible = "zmk,behavior-macro-one-param";
     label = "KVM_MONITOR_B";
@@ -59,6 +86,24 @@
     wait-ms = <KVM_WAIT_MS>;
     tap-ms = <KVM_TAP_MS>;
     bindings = <&kp KVM_HOTKEY>, <&kp KVM_HOTKEY>, <&kp RIGHT>, <&macro_param_1to1>, <&kp MACRO_PLACEHOLDER>;
+  };
+
+  // Select computer by number, then show its input A on Monitor B as well, so
+  // both monitors mirror the same source. Same as kvm_set followed by
+  // kvm_monitor_b, with a KVM_SETTLE_MS pause in between.
+  // Params: the key for the computer and the key for its input A, see KVM_SET_MIRROR_A(comp)
+  kvm_set_mirror_a: kvm_set_mirror_a {
+    compatible = "zmk,behavior-macro-two-param";
+    label = "KVM_SET_MIRROR_A";
+    wait-ms = <KVM_WAIT_MS>;
+    tap-ms = <KVM_TAP_MS>;
+    #binding-cells = <2>;
+    bindings
+      = <&kp KVM_HOTKEY>, <&kp KVM_HOTKEY>
+      , <&macro_wait_time KVM_SETTLE_MS>, <&macro_param_1to1>, <&kp MACRO_PLACEHOLDER>
+      , <&macro_wait_time KVM_WAIT_MS>
+      , <&kp KVM_HOTKEY>, <&kp KVM_HOTKEY>, <&kp RIGHT>
+      , <&macro_param_2to1>, <&kp MACRO_PLACEHOLDER>;
   };
 
   // Switch focus in display mode 2
